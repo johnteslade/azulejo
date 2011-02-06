@@ -1,17 +1,19 @@
 #!/usr/bin/env python
 #
-# This script binds
+# This script binds keyboard shortcuts to window resizing/tilling actions.
+# To fine tune your settings, edit the file ~/.azulejorc.js
 #
 # Author: Pedro
 # 
 # Check http://lamehacks.net for other lame hacks.
 #
-#
 
 import wnck, gtk
+from collections import deque
+import time
 import keybinder
-#import kb
 import configuration
+
 
 
 maximized_window_geometry = gtk.gdk.get_default_root_window().property_get('_NET_WORKAREA')[2][:4]
@@ -37,8 +39,8 @@ def get_all_windows():
 	windows = s.get_windows_stacked()
 	filtered_windows = filter(f_normal_window,windows)
 	filtered_windows.reverse()
-	print filtered_windows
 	return filtered_windows
+
 
 def parse_simple_math_expressions(expression):
 	expression = str(expression)
@@ -46,18 +48,22 @@ def parse_simple_math_expressions(expression):
 	expression = expression.replace('h',str(screen_height))
 	return eval(expression)
 
+
+
 def parse_geometry(geometry):
 	return map(parse_simple_math_expressions,geometry)
+
 
 
 def parse_arrangement(arrangement):
 	return map(parse_geometry, arrangement)
 
 
+
 def resize_windows(arrangement):
-	#TODO this backwards
+	global arrangement_size
 	arrangement_numeric = parse_arrangement(arrangement)
-	print arrangement_numeric
+	#print arrangement_numeric
 	filtered_windows = get_all_windows()
 	amount_of_windows = len(filtered_windows) 	
 	
@@ -65,21 +71,20 @@ def resize_windows(arrangement):
 		arrangement_numeric = arrangement_numeric[:amount_of_windows]
   
 	i = 0
-	looplength = len(arrangement_numeric)
-	while i < looplength:
+	arrangement_size = len(arrangement_numeric) #global scope variable, also used to rotate windows
+	while i < arrangement_size:
 		geometry_list_args = [0,255]
-		index = looplength - (i+1) #we must start in the end in order to keep window order correct
+		index = arrangement_size - (i+1) #we must start in the end in order to keep window order correct
 		geometry_list_args.extend(map (int,arrangement_numeric[index]))
 		filtered_windows[index].unmaximize()
 		filtered_windows[index].set_geometry(*geometry_list_args)
 		i+=1
 
 
+
 def resize_single_window(geometries):
 
 	def similar_geometries(ga,gb):
-		#print ga
-		#print gb
 		for i in range(4):
 			if abs(ga[i] - gb[i]) >= window_geometry_error_margin:
 				return False
@@ -105,8 +110,41 @@ def resize_single_window(geometries):
 	window.set_geometry(*geometry_list_args)
 
 
+
+
+def rotate_windows(dummy):
+	global arrangement_size
+	windows = get_all_windows()
+	amount_of_windows = len(windows)
+	
+	if amount_of_windows > arrangement_size:
+		windows = windows[:arrangement_size]
+		
+	geos = []
+	for window in windows:
+		window_geo = window.get_geometry()
+		window_geo = window_geo[:4]
+		geos.append(window_geo)
+		
+	#do the actual rotations, lets use deque as it's dramatically more efficient than a trivial shift implementation
+  	windows_deq = deque(windows)
+  	windows_deq.rotate(1)
+  	
+	rotation_len = len(windows_deq)
+	i = 0
+	while i < rotation_len:
+		geometry_list_args = [0,255]
+		index = rotation_len - (i+1) #again, start by the tail
+		geometry_list_args.extend(map (int,geos[index]))
+		windows_deq[index].unmaximize()
+		windows_deq[index].set_geometry(*geometry_list_args)
+		i+=1
+	
+	#(windows_deq[0]).activate(int(time.time())) #not sure why it doesn't work. if uncommented causes other windows beyond the rotated ones to hide behind current ones even after pressing ctrl+tab
+
+
+
 def dispatcher(dis_param):
-	print dis_param
 	func = dis_param[0]
 	param = dis_param[1]
 	wnck.screen_get_default().force_update() #doesn't apear to do much
@@ -114,7 +152,6 @@ def dispatcher(dis_param):
 	
 	
 	
-
 for action in configuration.conf_data:
 	keybind = action['keybind']
 	function_name = action['function']
