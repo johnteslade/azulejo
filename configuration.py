@@ -86,7 +86,7 @@ conf_filename = os.path.expanduser('.azulejorc.js')
 if not os.path.isfile(conf_filename):
 	fw = open(conf_filename, 'w')
 	fw.write(raw_json)
-	fw.close
+	fw.close()
 
 fr = open(conf_filename, 'r')
 json_string = fr.read()
