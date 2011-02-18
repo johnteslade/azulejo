@@ -72,6 +72,55 @@ raw_json = """
 },
 
 {
+"name":"window-to-southwest",
+"keybind": "<Super>b",
+"function" : "resize_single_window",
+"parameters":[
+	[0,"h*0.5","w*0.5","h*0.5"],
+	[0,"h*0.5","w*0.35","h*0.5"],
+	[0,"h*0.5","w*0.65","h*0.5"],
+	[0,"h*0.5","w","h*0.5"]
+	]
+},
+
+
+{
+"name":"window-to-southeast",
+"keybind": "<Super>n",
+"function" : "resize_single_window",
+"parameters":[
+	["0.5*w","h*0.5","w*0.5","h*0.5"],
+	["0.65*w","h*0.5","w*0.35","h*0.5"],
+	["0.35*w","h*0.5","w*0.65","h*0.5"],
+	[0,"h*0.5","w","h*0.5"]
+	]
+},
+
+{
+"name":"window-to-northwest",
+"keybind": "<Super>y",
+"function" : "resize_single_window",
+"parameters":[
+	[0,0,"w*0.5","h*0.5"],
+	[0,0,"w*0.35","h*0.5"],
+	[0,0,"w*0.65","h*0.5"],
+	[0,0,"w","h*0.5"]
+	]
+},
+
+{
+"name":"window-to-northeast",
+"keybind": "<Super>u",
+"function" : "resize_single_window",
+"parameters":[
+	["w*0.5",0,"w*0.5","h*0.5"],
+	["w*0.65",0,"w*0.35","h*0.5"],
+	["w*0.35",0,"w*0.65","h*0.5"],
+	[0,0,"w","h*0.5"]
+	]
+},
+
+{
 "name":"rotate-windows-positions",
 "description": "rotates windows' positions, rotation queue will be the size of last arrangement or, if smaller, the number of visible windows ",
 "keybind": "<Super>r",
