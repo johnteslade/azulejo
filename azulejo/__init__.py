@@ -1,0 +1,4 @@
+import azulejo
+
+azulejo.run()
+
