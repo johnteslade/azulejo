@@ -145,7 +145,7 @@ def rotate_windows(dummy):
 callable_actions = dict(\
 	resize_single_window=resize_single_window, \
 	resize_windows=resize_windows, \
-	rotate_windows=resize_windows \
+	rotate_windows=rotate_windows	
 )
 
 
