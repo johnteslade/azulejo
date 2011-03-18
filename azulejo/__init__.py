@@ -1,4 +1,1 @@
 import azulejo
-
-azulejo.run()
-

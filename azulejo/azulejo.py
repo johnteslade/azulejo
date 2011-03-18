@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-#
-# This script binds keyboard shortcuts to window resizing/tilling actions.
-# To fine tune your settings, edit the file ~/.azulejorc.js
-#
-# Author: Pedro
-# 
-
-
 import wnck, gtk
 from collections import deque
 import time

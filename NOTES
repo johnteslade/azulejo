@@ -12,3 +12,7 @@
 
 	* **arrangement** - an array of geometries representing the position and size of multple windows.
 
+
+fazer package com:
+S
+dpkg-buildpackage -rfakeroot -uc -us
