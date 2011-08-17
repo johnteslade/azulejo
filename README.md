@@ -42,6 +42,6 @@ TODO: add/explain example
 
 ## Author
 
-Pedro 
-[http://lamhacks.net]
+Pedro   
+[http://lamhacks.net](http://lamehacks.net)   
 email: pedro at lamehacks d0t net
