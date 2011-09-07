@@ -131,14 +131,19 @@ raw_json = """
 ]
 """
 
-conf_filename = os.path.expanduser('.azulejorc.js')
-if not os.path.isfile(conf_filename):
-	fw = open(conf_filename, 'w')
-	fw.write(raw_json)
-	fw.close()
+conf_filename = os.path.expanduser('~/.azulejorc.js')
 
-fr = open(conf_filename, 'r')
-json_string = fr.read()
-fr.close()
+if not os.path.isfile(conf_filename):
+    print "Starting azulejo by creating file: '%s'" %(conf_filename)
+    fw = open(conf_filename, 'w')
+    fw.write(raw_json)
+    fw.close()
+    json_string = raw_json
+else:
+    print "Starting azulejo reading config file: '%s'" %(conf_filename)
+    fr = open(conf_filename, 'r')
+    json_string = fr.read()
+    fr.close()
+
 conf_data = json.loads(json_string)
 
