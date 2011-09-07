@@ -25,7 +25,10 @@ def get_all_windows():
         return False
 
     s = wnck.screen_get_default()
-    while gtk.events_pending(): gtk.main_iteration()
+
+    while gtk.events_pending():
+        gtk.main_iteration()
+
     windows = s.get_windows_stacked()
     filtered_windows = filter(f_normal_window,windows)
     filtered_windows.reverse()
@@ -148,10 +151,10 @@ def dispatcher(dis_param):
     
     
 def run():    
+
     for action in configuration.conf_data:
         keybind = action['keybind']
         function_name = action['function']
-        print function_name
         function = callable_actions[function_name]
         parameters = action['parameters']
         dispacher_parameters = [function, parameters]

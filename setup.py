@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 
 #see http://pypi.python.org/pypi/stdeb for package building instructions
@@ -8,6 +8,7 @@ setup(name='azulejo',
       version='0.1',
       author='Pedro',
       author_email='pedro@lamehacks.net',     
-      py_modules=['azulejo'],
+      packages=['azulejo'],
+      include_package_data=True,
       scripts=['bin/azulejo'],
       )

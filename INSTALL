@@ -4,6 +4,24 @@ to install all required packages::
     sudo apt-get install python-keybinder python-wnck
 
 
-and then, run azulejo::
+and then, to init azulejo you can run::
 
     python run.py
+
+
+or to install::
+
+    sudo python setup.py install
+
+and then, from any path you can run::
+
+    azulejo
+
+
+Tip: if you area a develop, and want to
+get updated version of azulejo, you can
+run:
+
+    sudo python setup.py develop
+
+in the repository working dir.
