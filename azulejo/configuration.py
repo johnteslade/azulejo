@@ -11,139 +11,32 @@
 import json
 import os.path
 
+def get_initial_config_content():
+    """Returns the initial config values as string."""
+    this_dir = os.path.dirname(os.path.abspath(__file__))
+    initial_config_path = os.path.join(this_dir, 'initial_config.json')
 
-raw_json = """
-[
-{
-"name" : "side-by-syde",
-"keybind": "<Super>2",
-"function" : "resize_windows",
-"parameters":[
-    [0,0,"w/2","h"],
-    ["w/2+1",0,"w/2","h"]
-    ]
-},
+    config_file = open(initial_config_path, 'r')
+    content = config_file.read()
+    config_file.close()
+    return content
 
-{
-"name":"four-pane",
-"keybind": "<Super>4",
-"function" : "resize_windows",
-"parameters":[
-    [0,0,"w/2","h/2"],
-    ["w/2+1",0,"w/2","h/2"],
-    [0,"h/2+1","w/2","h/2"],
-    ["w/2+1","h/2+1","w/2","h/2"]
-    ]
-},
-
-{
-"name":"one-big-two-small",
-"keybind": "<Super>3",
-"function" : "resize_windows",
-"parameters":[
-    [0,0,"w*0.5","h"],
-    ["w*0.5+1",0,"w*0.5","h/2"],
-    ["w*0.5+1","h/2+1","w*0.5","h/2"]
-    ]
-},
-
-{
-"name":"window-to-te-left-side",
-"description": "move window to the left part of the screen, cycle through possible geometries",
-"keybind": "<Super>h",
-"function" : "resize_single_window",
-"parameters":[
-    [0,0,"w*0.5","h"],
-    [0,0,"w*0.3","h"],
-    [0,0,"w*0.7","h"]
-    ]
-},
-
-{
-"name":"window-to-the-right-side",
-"description": "move window to the right part of the screen, cycle through possible geometries",
-"keybind": "<Super>k",
-"function" : "resize_single_window",
-"parameters":[
-    ["w*0.5",0,"w*0.5","h"],
-    ["w*0.7",0,"w*0.3","h"],
-    ["w*0.3",0,"w*0.7","h"]
-    ]
-},
-
-{
-"name":"window-to-southwest",
-"keybind": "<Super>b",
-"function" : "resize_single_window",
-"parameters":[
-    [0,"h*0.5","w*0.5","h*0.5"],
-    [0,"h*0.5","w*0.35","h*0.5"],
-    [0,"h*0.5","w*0.65","h*0.5"],
-    [0,"h*0.5","w","h*0.5"]
-    ]
-},
-
-
-{
-"name":"window-to-southeast",
-"keybind": "<Super>n",
-"function" : "resize_single_window",
-"parameters":[
-    ["0.5*w","h*0.5","w*0.5","h*0.5"],
-    ["0.65*w","h*0.5","w*0.35","h*0.5"],
-    ["0.35*w","h*0.5","w*0.65","h*0.5"],
-    [0,"h*0.5","w","h*0.5"]
-    ]
-},
-
-{
-"name":"window-to-northwest",
-"keybind": "<Super>y",
-"function" : "resize_single_window",
-"parameters":[
-    [0,0,"w*0.5","h*0.5"],
-    [0,0,"w*0.35","h*0.5"],
-    [0,0,"w*0.65","h*0.5"],
-    [0,0,"w","h*0.5"]
-    ]
-},
-
-{
-"name":"window-to-northeast",
-"keybind": "<Super>u",
-"function" : "resize_single_window",
-"parameters":[
-    ["w*0.5",0,"w*0.5","h*0.5"],
-    ["w*0.65",0,"w*0.35","h*0.5"],
-    ["w*0.35",0,"w*0.65","h*0.5"],
-    [0,0,"w","h*0.5"]
-    ]
-},
-
-{
-"name":"rotate-windows-positions",
-"description": "rotates windows' positions, rotation queue will be the size of last arrangement or, if smaller, the number of visible windows ",
-"keybind": "<Super>r",
-"function" : "rotate_windows",
-"parameters":[]
-}
-
-]
-"""
+def create_inicial_config_file(conf_filename):
+    fw = open(conf_filename, 'w')
+    raw_json = get_initial_config_content()
+    fw.write(raw_json)
+    fw.close()
 
 conf_filename = os.path.expanduser('~/.azulejorc.js')
 
 if not os.path.isfile(conf_filename):
     print "Starting azulejo by creating file: '%s'" %(conf_filename)
-    fw = open(conf_filename, 'w')
-    fw.write(raw_json)
-    fw.close()
-    json_string = raw_json
-else:
-    print "Starting azulejo reading config file: '%s'" %(conf_filename)
-    fr = open(conf_filename, 'r')
-    json_string = fr.read()
-    fr.close()
+    create_inicial_config_file(conf_filename)
+
+print "Reading config file: '%s'" %(conf_filename)
+fr = open(conf_filename, 'r')
+json_string = fr.read()
+fr.close()
 
 conf_data = json.loads(json_string)
 
