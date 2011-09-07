@@ -1,0 +1,9 @@
+If you are in debian or ubuntu system, run this command
+to install all required packages::
+
+    sudo apt-get install python-keybinder python-wnck
+
+
+and then, run azulejo::
+
+    python run.py
