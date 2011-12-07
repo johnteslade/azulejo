@@ -1,0 +1,18 @@
+
+#NOTES
+
+## Namming and convetions
+
+	* **geometry** - a 4 element array containing the positions and size of a window acording on screen size.
+		  Each array element can the size of the window in pixels or an simple algebric
+		  expression.
+
+	* **numeric geometry** - a geometry with absolute values only. I.e. only numbers, no
+				algebric expression
+
+	* **arrangement** - an array of geometries representing the position and size of multple windows.
+
+
+fazer package com:
+S
+dpkg-buildpackage -rfakeroot -uc -us

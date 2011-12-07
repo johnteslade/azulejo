@@ -1,0 +1,10 @@
+
+ * Class (interface) windowmanager containing: resize_window(),
+   get_all_windows(), get_window_geometry(), set_window_geometry,
+   get_screen_size(), get_screen()
+
+
+ * write js validation module. Recieves another json with sctrutcure
+   details, length, validation callback funcion, etc (low priority)
+ 
+ 
