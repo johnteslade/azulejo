@@ -15,7 +15,7 @@ This is where azulejo comes in, it adds some tilling features but leaves your wi
 
 ## Installation
 
-If you use Debian, Ubuntu, or any other debian based operative system, the recomended way is simply downloading and installing the deb package. Check out the [downloads page](https://bitbucket.org/plainas/azulejo/downloads).
+If you use Debian, Ubuntu, or any other debian based operative system, the recomended way is simply downloading and installing the deb package. Check out the [downloads page](https://github.com/plainas/azulejo/downloads).
 
 Alternatively, you can install it using distutils or simply run the ''run.py'' file present on the project's root dir.
 
@@ -43,5 +43,5 @@ TODO: add/explain example
 ## Author
 
 Pedro   
-[http://lamhacks.net](http://lamehacks.net)   
+[http://lamehacks.net](http://lamehacks.net)   
 email: pedro at lamehacks d0t net
