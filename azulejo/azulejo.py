@@ -158,17 +158,15 @@ def run():
     azulejo_obj = Azulejo()
 
     for action in configuration.conf_data:
-        keybind = action['keybind']
-        function_name = action['function']
-        function = azulejo_obj.callable_actions[function_name]
-        parameters = action['parameters']
         
-        dispacher_parameters = (
-            function, 
-            azulejo_obj, 
-            parameters
-        )
-        
-        keybinder.bind(keybind, dispatcher, dispacher_parameters)        
+        keybinder.bind(
+            action['keybind'], 
+            dispatcher, 
+            (
+                azulejo_obj.callable_actions[action['function']], 
+                azulejo_obj, 
+                action['parameters']
+            )
+        )        
 
     gtk.main()
