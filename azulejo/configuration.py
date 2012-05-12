@@ -14,13 +14,18 @@ import os.path
 class AzulejoConfiguration:
     """ Handles configuration of program """
 
-    def __init__(self):
+    def __init__(self, always_use_initial=False):
+        
+        self._initial_config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'initial_config.json')
 
-        conf_filename = os.path.expanduser('~/.azulejorc.js')
+        if always_use_initial:
+            conf_filename = self._initial_config_path 
+        else:
+            conf_filename = os.path.expanduser('~/.azulejorc.js')
 
-        if not os.path.isfile(conf_filename):
-            print "Starting azulejo by creating file: '%s'" % (conf_filename)
-            self.create_initial_config_file(conf_filename)
+            if not os.path.isfile(conf_filename):
+                print "Starting azulejo by creating file: '%s'" % (conf_filename)
+                self.create_initial_config_file(conf_filename)
 
         print "Reading config file: '%s'" % (conf_filename)
         json_string = self.read_file(conf_filename)
@@ -35,16 +40,11 @@ class AzulejoConfiguration:
         file_handler.close()
         return content
 
-    def get_initial_config_content(self):
-        """Returns the initial config values as string."""
-        this_dir = os.path.dirname(os.path.abspath(__file__))
-        initial_config_path = os.path.join(this_dir, 'initial_config.json')
-        return self.read_file(initial_config_path)
 
     def create_initial_config_file(self, conf_filename):
         """Create a file with config values."""
         fw = open(conf_filename, 'w')
-        raw_json = get_initial_config_content()
+        raw_json = self.read_file(self._initial_config_path)
         fw.write(raw_json)
         fw.close()
 
