@@ -80,13 +80,12 @@ class AzulejoController:
                     return False
             return True
      
-        window = self._screen.get_active_window()    
-        window_original_geometry = window.get_geometry()
+        window_original_geometry = self._screen.get_active_window_geometry()
 
         #not an arrangement, but a list of geometires for that matter
         geometries_numeric = self.single_window_positions(geometries)
-        geometry_list_args = [0, 255]
-        
+       
+        # Calculate which geometry is the next one to use
         i = 1
         geometry_to_use_index = 0    
         for geometry_numeric in geometries_numeric:
@@ -95,11 +94,8 @@ class AzulejoController:
                 break
             i += 1 
 
-        geometry_list_args.extend(map (int, geometries_numeric[geometry_to_use_index]))
-        window.unmaximize()
-        window.set_geometry(*geometry_list_args)
-
-
+        # Now move the window
+        self._screen.move_active_window(geometries_numeric[geometry_to_use_index])
 
 
     def rotate_windows(self, dummy):

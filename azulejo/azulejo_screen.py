@@ -41,11 +41,31 @@ class AzulejoScreen:
 
         return wnck.screen_get_default().get_active_window()
 
+
+    def get_active_window_geometry(self):
+        """ Returns the geometry of the current active window """
+
+        return wnck.screen_get_default().get_active_window().get_geometry()
+
+
+    def move_active_window(self, new_geometry):
+        """ Moves the active window the specified geometry """
+        
+        geometry_list_args = [0, 255]
+        window = wnck.screen_get_default().get_active_window()    
+        geometry_list_args.extend(map (int, new_geometry))
+        window.unmaximize()
+        window.set_geometry(*geometry_list_args)
+
+
     def update(self):
         """ Forces and update """
 
         # Doesn't appear to do much
         wnck.screen_get_default().force_update()
+
+
+    
 
     def get_width(self):
         """ Returns width of screen """
