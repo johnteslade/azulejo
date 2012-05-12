@@ -36,6 +36,20 @@ class AzulejoController:
         return map(self.parse_geometry, arrangement)
 
 
+    def single_window_positions(self, positions):
+        """ Function to create all possible window positions 
+        
+        currently separate while multi-monitor is being added """
+
+        all_positions = []
+
+        for position in positions:
+            all_positions.append(
+                [ self.parse_simple_math_expressions(coord) for coord in position ]
+            )
+
+        return all_positions
+
 
     def resize_windows(self, arrangement):
         arrangement_numeric = self.parse_arrangement(arrangement)
@@ -70,7 +84,7 @@ class AzulejoController:
         window_original_geometry = window.get_geometry()
 
         #not an arrangement, but a list of geometires for that matter
-        geometries_numeric = self.parse_arrangement(geometries)
+        geometries_numeric = self.single_window_positions(geometries)
         geometry_list_args = [0, 255]
         
         i = 1
