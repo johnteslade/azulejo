@@ -138,7 +138,11 @@ class Azulejo:
         curwin = windows[0]
         curwin.maximize()
 
-    callable_actions = dict(\
+    def get_action_function(self, action):
+        """ Returns the function for a given action """
+        return self._callable_actions[action]
+
+    _callable_actions = dict(\
         resize_single_window=resize_single_window, \
         resize_windows=resize_windows, \
         rotate_windows=rotate_windows, \
@@ -163,7 +167,7 @@ def run():
             action['keybind'], 
             dispatcher, 
             (
-                azulejo_obj.callable_actions[action['function']], 
+                azulejo_obj.get_action_function(action['function']), 
                 azulejo_obj, 
                 action['parameters']
             )
