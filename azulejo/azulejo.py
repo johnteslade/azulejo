@@ -1,18 +1,19 @@
-import wnck, gtk
+import gtk
 from collections import deque
 import time
 import keybinder
 import configuration
+
+from azulejo_screen import AzulejoScreen
+
+
 
 class Azulejo:
 
     def __init__(self):
         """ Initialiser """
 
-        self.maximized_window_geometry = gtk.gdk.get_default_root_window().property_get('_NET_WORKAREA')[2][:4]
-        self.upper_corner = self.maximized_window_geometry[:2]
-        self.screen_width = self.maximized_window_geometry[2]
-        self.screen_height = self.maximized_window_geometry[3]
+        self._screen = AzulejoScreen() # Main screen object
 
         #because window resizing is not acurate we need a quick dirty workaround
         self.window_geometry_error_margin = 30
@@ -21,27 +22,10 @@ class Azulejo:
         self.arrangement_size = 0
 
 
-    def get_all_windows(self):
-        def f_normal_window(window):
-            if window.get_window_type() == wnck.WindowType.__enum_values__[0]:
-                return True
-            return False
-
-        s = wnck.screen_get_default()
-
-        while gtk.events_pending():
-            gtk.main_iteration()
-
-        windows = s.get_windows_stacked()
-        filtered_windows = filter(f_normal_window, windows)
-        filtered_windows.reverse()
-        return filtered_windows
-
-
     def parse_simple_math_expressions(self, expression):
         expression = str(expression)
-        expression = expression.replace('w', str(self.screen_width))
-        expression = expression.replace('h', str(self.screen_height))
+        expression = expression.replace('w', str(self._screen.get_width()))
+        expression = expression.replace('h', str(self._screen.get_height()))
         return eval(expression)
 
         
@@ -59,7 +43,7 @@ class Azulejo:
     def resize_windows(self, arrangement):
         arrangement_numeric = self.parse_arrangement(arrangement)
         #print arrangement_numeric
-        filtered_windows = self.get_all_windows()
+        filtered_windows = self._screen.get_all_windows()
         amount_of_windows = len(filtered_windows)     
         
         if amount_of_windows < len(arrangement_numeric):
@@ -85,7 +69,7 @@ class Azulejo:
                     return False
             return True
      
-        window = wnck.screen_get_default().get_active_window()    
+        window = self._screen.get_active_window()    
         window_original_geometry = window.get_geometry()
 
         #not an arrangement, but a list of geometires for that matter
@@ -108,7 +92,7 @@ class Azulejo:
 
 
     def rotate_windows(self, dummy):
-        windows = self.get_all_windows()
+        windows = self._screen.get_all_windows()
         amount_of_windows = len(windows)
         
         if amount_of_windows > self.arrangement_size:
@@ -137,9 +121,15 @@ class Azulejo:
         #(windows_deq[0]).activate(int(time.time())) #not sure why it doesn't work. if uncommented causes other windows beyond the rotated ones to hide behind current ones even after pressing ctrl+tab
 
     def maximize(self, dummy):
-        windows = self.get_all_windows()
+        windows = self._screen.get_all_windows()
         curwin = windows[0]
         curwin.maximize()
+
+    def force_update(self):
+        """ Forces update on screen """
+
+        self._screen.update()
+
 
     def get_action_function(self, action):
         """ Returns the function for a given action """
@@ -156,7 +146,7 @@ def dispatcher(dis_param):
     
     (func, azulejo_obj, param) = dis_param
 
-    wnck.screen_get_default().force_update() #doesn't apear to do much
+    azulejo_obj.force_update()
     func(azulejo_obj, param)    
     
     
