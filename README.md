@@ -1,5 +1,7 @@
 # Azulejo
 
+Note: this is a fork from https://bitbucket.org/plainas/azulejo
+
 Azulejo is a port (an attempt to) of [winsplit revolution](http://www.winsplit-revolution.com/)'s functionality to *nix desktop environments.
 Simply put, it resizes and moves windows using keyboard shortcuts.
 
