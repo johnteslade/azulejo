@@ -1,5 +1,6 @@
 import wnck
 import gtk
+import logging
 
 
 class AzulejoScreen:

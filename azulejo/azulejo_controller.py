@@ -1,5 +1,6 @@
 from collections import deque
 import time
+import logging
 
 from azulejo_screen import AzulejoScreen
 
@@ -48,8 +49,6 @@ class AzulejoController:
     def create_geometry(self, geometry_in, monitor):
         """ Creates the geometry for the config input """
       
-        print "geo in = {}".format(geometry_in)
-
         monitor_geometry = self._screen.get_monitor_geometry(monitor) 
 
         # Parse the string values coming in
@@ -59,7 +58,7 @@ class AzulejoController:
         geometry_out[0] += monitor_geometry.x
         geometry_out[1] += monitor_geometry.y
         
-        print "geo out = {}".format(geometry_out)
+        logging.debug("Possible geometry = {}".format(geometry_out))
 
         return geometry_out
 
@@ -111,7 +110,7 @@ class AzulejoController:
         window_original_geometry = self._screen.get_active_window_geometry()
 
         current_monitor = self._screen.get_active_window_monitor()
-        print "currently on {}".format(current_monitor)
+        logging.debug("Window currently on monitor {}".format(current_monitor))
 
         #not an arrangement, but a list of geometires for that matter
         geometries_numeric = self.single_window_positions(geometries, current_monitor)

@@ -1,6 +1,7 @@
 import gtk
 import keybinder
 import configuration
+import logging
 
 from azulejo_controller import AzulejoController
 from configuration import AzulejoConfiguration
@@ -17,7 +18,9 @@ def run():
 
     azulejo_obj = AzulejoController()
 
-    for action in AzulejoConfiguration().get_config_data():
+    logging.basicConfig(level=logging.DEBUG)
+
+    for action in AzulejoConfiguration(True).get_config_data():
         
         keybinder.bind(
             action['keybind'], 
@@ -30,3 +33,6 @@ def run():
         )        
 
     gtk.main()
+
+
+
