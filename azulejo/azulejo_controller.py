@@ -20,14 +20,18 @@ class AzulejoController:
 
 
     def parse_simple_math_expressions(self, expression, width=None, height=None):
+        """ Parses the string expression and evaluates it """
+        
         expression = str(expression)
         
-        if width and height:
-            expression = expression.replace('w', str(width))
-            expression = expression.replace('h', str(height))
-        else:
-            expression = expression.replace('w', str(self._screen.get_width()))
-            expression = expression.replace('h', str(self._screen.get_height()))
+        if width == None:
+            width = self._screen.get_width() 
+            
+        if height == None:
+            height = self._screen.get_height() 
+            
+        expression = expression.replace('w', str(width))
+        expression = expression.replace('h', str(height))
 
         return int(eval(expression))
 
