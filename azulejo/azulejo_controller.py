@@ -19,14 +19,19 @@ class AzulejoController:
         self.arrangement_size = 0
 
 
-    def parse_simple_math_expressions(self, expression):
+    def parse_simple_math_expressions(self, expression, width=None, height=None):
         expression = str(expression)
-        expression = expression.replace('w', str(self._screen.get_width()))
-        expression = expression.replace('h', str(self._screen.get_height()))
-        return eval(expression)
-
         
+        if width and height:
+            expression = expression.replace('w', str(width))
+            expression = expression.replace('h', str(height))
+        else:
+            expression = expression.replace('w', str(self._screen.get_width()))
+            expression = expression.replace('h', str(self._screen.get_height()))
 
+        return int(eval(expression))
+
+    
     def parse_geometry(self, geometry):
         return map(self.parse_simple_math_expressions, geometry)
 
@@ -35,8 +40,27 @@ class AzulejoController:
     def parse_arrangement(self, arrangement):
         return map(self.parse_geometry, arrangement)
 
+    
+    def create_geometry(self, geometry_in, monitor):
+        """ Creates the geometry for the config input """
+      
+        print "geo in = {}".format(geometry_in)
 
-    def single_window_positions(self, positions):
+        monitor_geometry = self._screen.get_monitor_geometry(monitor) 
+
+        # Parse the string values coming in
+        geometry_out = [ self.parse_simple_math_expressions(coord, monitor_geometry.width, monitor_geometry.height) for coord in geometry_in ]
+
+        # Modify the geometry to account for the x and y of the monitor
+        geometry_out[0] += monitor_geometry.x
+        geometry_out[1] += monitor_geometry.y
+        
+        print "geo out = {}".format(geometry_out)
+
+        return geometry_out
+
+
+    def single_window_positions(self, positions, monitor):
         """ Function to create all possible window positions 
         
         currently separate while multi-monitor is being added """
@@ -45,7 +69,7 @@ class AzulejoController:
 
         for position in positions:
             all_positions.append(
-                [ self.parse_simple_math_expressions(coord) for coord in position ]
+                self.create_geometry(position, monitor)
             )
 
         return all_positions
@@ -82,8 +106,11 @@ class AzulejoController:
      
         window_original_geometry = self._screen.get_active_window_geometry()
 
+        current_monitor = self._screen.get_active_window_monitor()
+        print "currently on {}".format(current_monitor)
+
         #not an arrangement, but a list of geometires for that matter
-        geometries_numeric = self.single_window_positions(geometries)
+        geometries_numeric = self.single_window_positions(geometries, current_monitor)
        
         # Calculate which geometry is the next one to use
         i = 1

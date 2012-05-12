@@ -36,16 +36,35 @@ class AzulejoScreen:
         filtered_windows.reverse()
         return filtered_windows
 
+    
+    def get_monitor_geometry(self, monitor=None):
+        """ Returns a rectangle with geometry of the specified monitor """
+
+        if monitor != None:
+            return gtk.gdk.screen_get_default().get_monitor_geometry(monitor)
+        else:
+            root_window_coords = gtk.gdk.screen_get_default().get_root_window().property_get('_NET_WORKAREA')[2][:4]
+            return gtk.gdk.Rectangle(x=
+            root_window_coords[0], y=root_window_coords[1], width=root_window_coords[2], height=root_window_coords[3])     
+
     def get_active_window(self):
         """ Returns the active window """
 
         return wnck.screen_get_default().get_active_window()
 
 
+    def get_active_window_monitor(self):
+        """ Returns the monitor of the currently active window """
+
+        # Find the active window x, y corrdinates then find out which monitor this is
+        active_window_geo = self.get_active_window_geometry() 
+        return gtk.gdk.screen_get_default().get_monitor_at_point(active_window_geo[0], active_window_geo[1]) 
+
+
     def get_active_window_geometry(self):
         """ Returns the geometry of the current active window """
 
-        return wnck.screen_get_default().get_active_window().get_geometry()
+        return self.get_active_window().get_geometry()
 
 
     def move_active_window(self, new_geometry):
