@@ -41,7 +41,7 @@ def parse_simple_math_expressions(expression):
     expression = expression.replace('h',str(screen_height))
     return eval(expression)
 
-
+    
 
 def parse_geometry(geometry):
     return map(parse_simple_math_expressions,geometry)
@@ -142,10 +142,10 @@ def maximize(dummy):
     curwin.maximize()
 
 callable_actions = dict(\
-	resize_single_window=resize_single_window, \
-	resize_windows=resize_windows, \
-	rotate_windows=rotate_windows, \
-    maximize=maximize		
+    resize_single_window=resize_single_window, \
+    resize_windows=resize_windows, \
+    rotate_windows=rotate_windows, \
+    maximize=maximize        
 )
 
 def dispatcher(dis_param):
