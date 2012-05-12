@@ -41,7 +41,7 @@
 },
 
 {
-    "name": "window-to-te-left-side",
+    "name": "window-to-the-left-side",
     "description": "move window to the left part of the screen, cycle through possible geometries",
     "keybind": "<Super>h",
     "function": "resize_single_window",
