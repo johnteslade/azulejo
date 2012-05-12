@@ -6,16 +6,19 @@ import configuration
 
 class Azulejo:
 
-    maximized_window_geometry = gtk.gdk.get_default_root_window().property_get('_NET_WORKAREA')[2][:4]
-    upper_corner = maximized_window_geometry[:2]
-    screen_width = maximized_window_geometry[2]
-    screen_height = maximized_window_geometry[3]
+    def __init__(self):
+        """ Initialiser """
 
-    #because window resizing is not acurate we need a quick dirty workaround
-    window_geometry_error_margin = 30
+        self.maximized_window_geometry = gtk.gdk.get_default_root_window().property_get('_NET_WORKAREA')[2][:4]
+        self.upper_corner = self.maximized_window_geometry[:2]
+        self.screen_width = self.maximized_window_geometry[2]
+        self.screen_height = self.maximized_window_geometry[3]
 
-    #variable to hold the amount of windows since the last arrangement
-    arrangement_size = 0
+        #because window resizing is not acurate we need a quick dirty workaround
+        self.window_geometry_error_margin = 30
+
+        #variable to hold the amount of windows since the last arrangement
+        self.arrangement_size = 0
 
 
     def get_all_windows(self):
