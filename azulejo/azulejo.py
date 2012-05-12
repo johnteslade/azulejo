@@ -146,9 +146,8 @@ class Azulejo:
     )
 
 def dispatcher(dis_param):
-    func = dis_param[0]
-    azulejo_obj = dis_param[1]
-    param = dis_param[2]
+    
+    (func, azulejo_obj, param) = dis_param
 
     wnck.screen_get_default().force_update() #doesn't apear to do much
     func(azulejo_obj, param)    
@@ -163,7 +162,13 @@ def run():
         function_name = action['function']
         function = azulejo_obj.callable_actions[function_name]
         parameters = action['parameters']
-        dispacher_parameters = [function, azulejo_obj, parameters]
+        
+        dispacher_parameters = (
+            function, 
+            azulejo_obj, 
+            parameters
+        )
+        
         keybinder.bind(keybind, dispatcher, dispacher_parameters)        
 
     gtk.main()
