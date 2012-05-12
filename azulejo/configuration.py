@@ -11,33 +11,45 @@
 import json
 import os.path
 
-def read_file(path):
-    """Returns file content as string."""
-    file_handler = open(path, 'r')
-    content = file_handler.read()
-    file_handler.close()
-    return content
+class AzulejoConfiguration:
+    """ Handles configuration of program """
 
-def get_initial_config_content():
-    """Returns the initial config values as string."""
-    this_dir = os.path.dirname(os.path.abspath(__file__))
-    initial_config_path = os.path.join(this_dir, 'initial_config.json')
-    return read_file(initial_config_path)
+    def __init__(self):
 
-def create_initial_config_file(conf_filename):
-    """Create a file with config values."""
-    fw = open(conf_filename, 'w')
-    raw_json = get_initial_config_content()
-    fw.write(raw_json)
-    fw.close()
+        conf_filename = os.path.expanduser('~/.azulejorc.js')
 
-conf_filename = os.path.expanduser('~/.azulejorc.js')
+        if not os.path.isfile(conf_filename):
+            print "Starting azulejo by creating file: '%s'" % (conf_filename)
+            self.create_initial_config_file(conf_filename)
 
-if not os.path.isfile(conf_filename):
-    print "Starting azulejo by creating file: '%s'" %(conf_filename)
-    create_initial_config_file(conf_filename)
+        print "Reading config file: '%s'" % (conf_filename)
+        json_string = self.read_file(conf_filename)
 
-print "Reading config file: '%s'" %(conf_filename)
-json_string = read_file(conf_filename)
+        self.conf_data = json.loads(json_string)
 
-conf_data = json.loads(json_string)
+
+    def read_file(self, path):
+        """Returns file content as string."""
+        file_handler = open(path, 'r')
+        content = file_handler.read()
+        file_handler.close()
+        return content
+
+    def get_initial_config_content(self):
+        """Returns the initial config values as string."""
+        this_dir = os.path.dirname(os.path.abspath(__file__))
+        initial_config_path = os.path.join(this_dir, 'initial_config.json')
+        return self.read_file(initial_config_path)
+
+    def create_initial_config_file(self, conf_filename):
+        """Create a file with config values."""
+        fw = open(conf_filename, 'w')
+        raw_json = get_initial_config_content()
+        fw.write(raw_json)
+        fw.close()
+
+    def get_config_data(self):
+        """ Gets the config data """
+        return self.conf_data
+
+        

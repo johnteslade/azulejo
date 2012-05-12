@@ -3,7 +3,7 @@ import keybinder
 import configuration
 
 from azulejo_controller import AzulejoController
-
+from configuration import AzulejoConfiguration
 
 def dispatcher(dis_param):
     
@@ -17,7 +17,7 @@ def run():
 
     azulejo_obj = AzulejoController()
 
-    for action in configuration.conf_data:
+    for action in AzulejoConfiguration().get_config_data():
         
         keybinder.bind(
             action['keybind'], 
