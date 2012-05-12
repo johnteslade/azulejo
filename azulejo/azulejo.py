@@ -135,13 +135,18 @@ def rotate_windows(dummy):
     
     #(windows_deq[0]).activate(int(time.time())) #not sure why it doesn't work. if uncommented causes other windows beyond the rotated ones to hide behind current ones even after pressing ctrl+tab
 
+def maximize(dummy):
+    global arrangement_size
+    windows = get_all_windows()
+    curwin = windows[0]
+    curwin.maximize()
 
 callable_actions = dict(\
-    resize_single_window=resize_single_window, \
-    resize_windows=resize_windows, \
-    rotate_windows=rotate_windows    
+	resize_single_window=resize_single_window, \
+	resize_windows=resize_windows, \
+	rotate_windows=rotate_windows, \
+    maximize=maximize		
 )
-
 
 def dispatcher(dis_param):
     func = dis_param[0]

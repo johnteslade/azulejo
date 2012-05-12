@@ -1,4 +1,12 @@
 [
+
+{
+	"name" : "maximize",
+	"keybind": "<Super>1",
+	"function" : "maximize",
+	"parameters":[]
+},
+
 {
 "name" : "side-by-syde",
 "keybind": "<Super>2",
