@@ -41,6 +41,22 @@
 },
 
 {
+    "name": "window-to-monitor-left",
+    "description": "move window to monitor to left",
+    "keybind": "<Super>q",
+    "function": "move_monitor",
+    "parameters": "left"
+},
+
+{
+    "name": "window-to-monitor-right",
+    "description": "move window to monitor to right",
+    "keybind": "<Super>w",
+    "function": "move_monitor",
+    "parameters": "right"
+},
+
+{
     "name": "window-to-the-left-side",
     "description": "move window to the left part of the screen, cycle through possible geometries",
     "keybind": "<Super>h",

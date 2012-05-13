@@ -15,22 +15,18 @@ class SingleTestScreenMock(ScreenMockBase):
            {
                'geometry': [ 0, 0, 10, 10 ],
                'active': True,
-               'monitor': 0,
            },
            {
                'geometry': [ 200, 0, 5, 5 ],
                'active': False,
-               'monitor': 0,
            },
            {
                'geometry': [ 200, 0, 5, 5 ],
                'active': False,
-               'monitor': 0,
            },
            {
                'geometry': [ 200, 0, 5, 5 ],
                'active': False,
-               'monitor': 0,
            },
         ]
 
@@ -41,6 +37,11 @@ class MultipleTestScreenMock(ScreenMockBase):
     Mock for multiple screens
     
     In a simple side by side configuration where the active screen is on the 2nd monitor
+
+    TODO addition types of multiple test config:
+        - two monitors arranged top and bottom
+        - >2 monitors
+        - monitors where one is larger than the other (and moving a too large window to smaller one)
     
     """
     
@@ -55,22 +56,18 @@ class MultipleTestScreenMock(ScreenMockBase):
            {
                'geometry': [ 0, 0, 10, 10 ],
                'active': False,
-               'monitor': 0,
            },
            {
                'geometry': [ 100, 0, 5, 5 ],
                'active': False,
-               'monitor': 0,
            },
            {
                'geometry': [ 300, 0, 5, 5 ],
-               'active': True,
-               'monitor': 1,
+               'active': False,
            },
            {
-               'geometry': [ 250, 10, 5, 5 ],
-               'active': False,
-               'monitor': 1,
+               'geometry': [ 250, 10, 20, 30 ],
+               'active': True,
            },
         ]
 

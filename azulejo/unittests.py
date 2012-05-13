@@ -32,6 +32,39 @@ class AzulejoTest(unittest.TestCase):
         )
 
 
+    def test_move_monitor(self):
+        """ Test the moving of window to a monitor """  
+        
+        keybinding_obj = KeyBinderDummy()
+
+        screen = MultipleTestScreenMock()
+
+        # Run the code under test
+        azulejo.run(True, screen, keybinding_obj)
+
+        self.assertEqual(screen.get_active_window_monitor(), 1)
+
+        # Move left
+        keybinding_obj.action_key('<Super>q')
+
+        self.assertEqual(
+            screen.get_active_window()['geometry'],
+            [50, 10, 20, 30]
+        )
+        
+        self.assertEqual(screen.get_active_window_monitor(), 0)
+
+        # Move right
+        keybinding_obj.action_key('<Super>w')
+
+        self.assertEqual(
+            screen.get_active_window()['geometry'],
+            [250, 10, 20, 30]
+        )
+        
+        self.assertEqual(screen.get_active_window_monitor(), 1)
+
+
     def test_left_side(self):
         """ Test the left side moving of windows """  
         

@@ -98,6 +98,12 @@ class AzulejoScreen:
         curwin.maximize()
     
 
+    def get_number_monitors(self):
+        """ Returns the number of monitors in use """
+
+        return gtk.gdk.screen_get_default().get_n_monitors()
+
+
     def update(self):
         """ Forces and update """
 
