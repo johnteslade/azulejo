@@ -22,19 +22,16 @@ class AzulejoScreen:
     def get_all_windows(self):
         """ Gets all windows in the screen """
 
-        # TODO this could be a simple lambda
-        def f_normal_window(window):
-            if window.get_window_type() == wnck.WindowType.__enum_values__[0]:
-                return True
-            return False
-
+        # Get screen - this must come before gtk loop
         s = wnck.screen_get_default()
 
+        # Deal with pending events
         while gtk.events_pending():
             gtk.main_iteration()
 
+        # Get windows list and filter for normal windows
         windows = s.get_windows_stacked()
-        filtered_windows = filter(f_normal_window, windows)
+        filtered_windows = filter(lambda window: window.get_window_type() == wnck.WindowType.__enum_values__[0], windows)
         filtered_windows.reverse()
         return filtered_windows
 
