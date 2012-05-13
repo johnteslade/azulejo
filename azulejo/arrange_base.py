@@ -7,6 +7,7 @@ from azulejo_screen import AzulejoScreen
 
 
 class ArrangeBase:
+    """ A base class for defining an action to arrange window(s) """    
 
     def __init__(self, screen_in):
         """ Initialiser """
@@ -151,20 +152,4 @@ class ArrangeBase:
         self._screen.maximise_active_window()
 
 
-    def force_update(self):
-        """ Forces update on screen """
-
-        self._screen.update()
-
-
-    def get_action_function(self, action):
-        """ Returns the function for a given action """
-        return self._callable_actions[action]
-
-    _callable_actions = dict(\
-        resize_single_window=resize_single_window, \
-        resize_windows=resize_windows, \
-        rotate_windows=rotate_windows, \
-        maximize=maximize        
-    )
 

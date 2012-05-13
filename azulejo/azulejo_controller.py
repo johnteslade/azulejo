@@ -30,9 +30,13 @@ class AzulejoController:
         )
 
 
-
     def do_action(self, function, params):
         """ Returns the function for a given action """
+
+        # Force screen update
+        self._screen.update()
+        
+        # Call the correct function
         func = self._callable_actions[function]
         func(params)
 
