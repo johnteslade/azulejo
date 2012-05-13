@@ -17,29 +17,6 @@ class AzulejoTest(unittest.TestCase):
             keybinding_obj.bind(key, dispatcher, dispatcher_params)
         mock_my_method.side_effect = side_effect
 
-        # Definition of the screen mock for this test
-        class SingleTestScreenMock(AzulejoScreenMock):
-            def __init__(self):
-               
-                self.monitor_geometry = [
-                   gtk.gdk.Rectangle(x=0, y=0, width=1000, height=1000),
-                ]
-
-                self.windows = [
-                   {
-                       'geometry': [ 0, 0, 10, 10 ],
-                       'active': True,
-                       'monitor': 0,
-                   },
-                   {
-                       'geometry': [ 200, 0, 5, 5 ],
-                       'active': False,
-                       'monitor': 0,
-                   },
-                ]
-            
-
-
         # Monkey patch
         azulejo_screen.AzulejoScreen = SingleTestScreenMock
 
@@ -191,6 +168,29 @@ class AzulejoScreenMock:
 
         # Nothing to do in the mock
         pass
+
+
+class SingleTestScreenMock(AzulejoScreenMock):
+    """ Mock for a single screen """
+    
+    def __init__(self):
+       
+        self.monitor_geometry = [
+           gtk.gdk.Rectangle(x=0, y=0, width=1000, height=1000),
+        ]
+
+        self.windows = [
+           {
+               'geometry': [ 0, 0, 10, 10 ],
+               'active': True,
+               'monitor': 0,
+           },
+           {
+               'geometry': [ 200, 0, 5, 5 ],
+               'active': False,
+               'monitor': 0,
+           },
+        ]
 
 
 if __name__ == '__main__':
