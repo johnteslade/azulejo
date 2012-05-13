@@ -4,6 +4,11 @@ import logging
 
 from azulejo_screen import AzulejoScreen
 from arrange_base import ArrangeBase
+from arrange_single_window import ArrangeSingleWindow
+from arrange_maximize import ArrangeMaximize
+from arrange_move_monitor import ArrangeMoveMonitor
+from arrange_multiple_windows import ArrangeMultipleWindows
+from arrange_rotate import ArrangeRotate
 
 
 
@@ -22,12 +27,13 @@ class AzulejoController:
 
         self.arrange_base = ArrangeBase(self._screen)
 
-        self._callable_actions = dict(\
-            resize_single_window=self.arrange_base.resize_single_window, \
-            resize_windows=self.arrange_base.resize_windows, \
-            rotate_windows=self.arrange_base.rotate_windows, \
-            maximize=self.arrange_base.maximize        
-        )
+        self._action_classes = {
+            'resize_single_window': ArrangeSingleWindow(self._screen),
+            'resize_windows': ArrangeMultipleWindows(self._screen),
+            'rotate_windows': ArrangeRotate(self._screen),
+            'maximize': ArrangeMaximize(self._screen),     
+            'move_monitor': ArrangeMoveMonitor(self._screen),       
+        }
 
 
     def do_action(self, function, params):
@@ -37,8 +43,7 @@ class AzulejoController:
         self._screen.update()
         
         # Call the correct function
-        func = self._callable_actions[function]
-        func(params)
+        self._action_classes[function].do(params)
 
 
 

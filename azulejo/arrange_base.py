@@ -21,6 +21,12 @@ class ArrangeBase:
         self.arrangement_size = 0
 
 
+    def do(self, params):
+        """ Main function that performs the arrangement """
+
+        raise NotImplementedError
+
+
     def parse_simple_math_expressions(self, expression, width=None, height=None):
         """ Parses the string expression and evaluates it """
         
@@ -78,78 +84,6 @@ class ArrangeBase:
 
         return all_positions
 
-
-    def resize_windows(self, arrangement):
-        """ Resizes multiple windows """
-
-        self._screen.move_windows(
-            self.parse_arrangement(arrangement)
-        )
-
-
-    def resize_single_window(self, geometries):
-        """ Resizes just a single window """
-
-        def similar_geometries(ga, gb):
-            for i in range(4):
-                if abs(ga[i] - gb[i]) >= self.window_geometry_error_margin:
-                    return False
-            return True
-     
-        window_original_geometry = self._screen.get_active_window_geometry()
-
-        current_monitor = self._screen.get_active_window_monitor()
-        logging.debug("Window currently on monitor {}".format(current_monitor))
-
-        #not an arrangement, but a list of geometires for that matter
-        geometries_numeric = self.single_window_positions(geometries, current_monitor)
-       
-        # Calculate which geometry is the next one to use
-        i = 1
-        geometry_to_use_index = 0    
-        for geometry_numeric in geometries_numeric:
-            if similar_geometries(geometry_numeric, window_original_geometry):
-                geometry_to_use_index = i % len(geometries_numeric)
-                break
-            i += 1 
-
-        # Now move the window
-        self._screen.move_active_window(geometries_numeric[geometry_to_use_index])
-
-
-    def rotate_windows(self, dummy):
-        windows = self._screen.get_all_windows()
-        amount_of_windows = len(windows)
-        
-        if amount_of_windows > self.arrangement_size:
-            windows = windows[:self.arrangement_size]
-            
-        geos = []
-        for window in windows:
-            window_geo = window.get_geometry()
-            window_geo = window_geo[:4]
-            geos.append(window_geo)
-            
-            #do the actual rotations, lets use deque as it's dramatically more efficient than a trivial shift implementation
-        windows_deq = deque(windows)
-        windows_deq.rotate(1)
-          
-        rotation_len = len(windows_deq)
-        i = 0
-        while i < rotation_len:
-            geometry_list_args = [0, 255]
-            index = rotation_len - (i + 1) #again, start by the tail
-            geometry_list_args.extend(map (int, geos[index]))
-            windows_deq[index].unmaximize()
-            windows_deq[index].set_geometry(*geometry_list_args)
-            i += 1
-        
-        #(windows_deq[0]).activate(int(time.time())) #not sure why it doesn't work. if uncommented causes other windows beyond the rotated ones to hide behind current ones even after pressing ctrl+tab
-
-    def maximize(self, dummy):
-        """ Maximise window """
-
-        self._screen.maximise_active_window()
 
 
 
