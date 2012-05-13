@@ -7,10 +7,30 @@ import gtk
 import azulejo
 
 from test.screen_mocks import SingleTestScreenMock
+from test.screen_mocks import MultipleTestScreenMock
 from test.key_binder import KeyBinderDummy
 
 
 class AzulejoTest(unittest.TestCase):
+
+    def test_left_side_multiple(self):
+        """ Test the left side moving of windows when multiple monitors are in place """  
+        
+        keybinding_obj = KeyBinderDummy()
+
+        screen = MultipleTestScreenMock()
+
+        # Run the code under test
+        azulejo.run(True, screen, keybinding_obj)
+
+        # Trigger a keypress
+        keybinding_obj.action_key('<Super>h')
+
+        self.assertEqual(
+            screen.get_active_window()['geometry'],
+            [200, 0, 100, 100]
+        )
+
 
     def test_left_side(self):
         """ Test the left side moving of windows """  
