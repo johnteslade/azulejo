@@ -5,6 +5,11 @@ import keybinder
 import azulejo_screen
 import gtk
 
+from test.screen_mocks import SingleTestScreenMock
+from test.key_binder import KeyBinderDummy
+
+
+
 class AzulejoTest(unittest.TestCase):
 
     @patch.object(keybinder, 'bind')
@@ -149,163 +154,6 @@ class AzulejoTest(unittest.TestCase):
             [1001, 501, 1000, 500]
         )
 
-        
-class KeyBinderDummy:
-    """ Class this is used to allow keybindings to be caught and to be actioned """
-
-    def __init__(self):
-    
-        self.bindings = []
-        self.saved_obj = None
-
-
-    def bind(self, action, dispatcher, dispatcher_params):
-        """ Bind a key press """
-
-        if action == 'all':
-            # Detect special all binding as being the controller
-            self.saved_obj = dispatcher_params
-        else:
-            self.bindings.append({
-                'action': action,
-                'dispatcher': dispatcher,
-                'dispatcher_params': dispatcher_params,
-            })
-        
-    def action_key(self, action):
-        """ Actions a key press by calling the relavent dispatcher """
-
-        key_found = filter(lambda x: x['action'] == action, self.bindings)
-        assert len(key_found) == 1
-        func = key_found[0]['dispatcher']
-        func(key_found[0]['dispatcher_params'])
-
-    def get_screen(self):
-        """ Get's the screen object """
-        
-        return self.saved_obj._screen
-
-
-
-
-class AzulejoScreenMock:
-    """ Mock object for the screen """
-
-    monitor_geometry = []
-    windows = []
-
-    def __init__(self):
-        raise NotImplementedError
-
-    
-    def get_all_windows(self):
-        """ Gets all windows in the screen """
-
-        return self.windows
-
-    
-    def get_monitor_geometry(self, monitor=None):
-        """ Returns a rectangle with geometry of the specified monitor """
-
-        return self.monitor_geometry[monitor]
-
-
-    def get_active_window(self):
-        """ Returns the active window """
-
-        active_windows = filter(lambda x: x['active'] == True, self.windows)
-        assert len(active_windows) == 1
-
-        return active_windows[0]
-
-
-    def get_active_window_monitor(self):
-        """ Returns the monitor of the currently active window """
-
-        return self.get_active_window()['monitor']
-
-
-    def get_active_window_geometry(self):
-        """ Returns the geometry of the current active window """
-
-        return self.get_active_window()['geometry']
-
-
-    def move_active_window(self, new_geometry):
-        """ Moves the active window the specified geometry """
-        
-        for x in xrange(len(self.windows)):
-            if self.windows[x]['active']:
-                self.windows[x]['geometry'] = new_geometry
-                break
-    
-
-    def move_windows(self, new_geometry_list):
-        """ Moves the active window the specified geometry """
-        
-        for x in xrange(len(new_geometry_list)):
-            self.windows[x]['geometry'] = new_geometry_list[x]
-
-
-    def maximise_active_window(self):
-        """ Maximises the active window """ 
-
-        monitor_size = self.get_monitor_geometry(self.get_active_window_monitor())
-        self.move_active_window([monitor_size.x, monitor_size.y, monitor_size.width, monitor_size.height])
-   
-   
-    def get_width(self):
-        """ Returns width of screen """
-       
-        # TODO not useful for multimonitor
-        return self.monitor_geometry[0].width 
-
-
-    def get_height(self):
-        """ Returns height of screen """
-        
-        # TODO not useful for multimonitor
-        return self.monitor_geometry[0].height
-
-
-    def update(self):
-        """ Forces and update """
-
-        # Nothing to do in the mock
-        pass
-
-
-class SingleTestScreenMock(AzulejoScreenMock):
-    """ Mock for a single screen """
-    
-    def __init__(self):
-       
-        self.monitor_geometry = [
-           gtk.gdk.Rectangle(x=0, y=0, width=2000, height=1000),
-        ]
-
-        self.windows = [
-           {
-               'geometry': [ 0, 0, 10, 10 ],
-               'active': True,
-               'monitor': 0,
-           },
-           {
-               'geometry': [ 200, 0, 5, 5 ],
-               'active': False,
-               'monitor': 0,
-           },
-           {
-               'geometry': [ 200, 0, 5, 5 ],
-               'active': False,
-               'monitor': 0,
-           },
-           {
-               'geometry': [ 200, 0, 5, 5 ],
-               'active': False,
-               'monitor': 0,
-           },
-        ]
 
 
 if __name__ == '__main__':
