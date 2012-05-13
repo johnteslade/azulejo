@@ -81,7 +81,7 @@ class AzulejoScreen:
         filtered_windows = self.get_all_windows()
 
         for x in xrange(len(new_geometry_list)):
-            if x < len(filter_windows):
+            if x < len(filtered_windows):
                 self.move_window(filtered_windows[x], new_geometry_list[x])
 
 
