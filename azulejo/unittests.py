@@ -30,7 +30,7 @@ class AzulejoTest(unittest.TestCase):
 
         self.assertEqual(
             keybinding_obj.get_screen().get_active_window()['geometry'],
-            [0, 0, 500, 1000]
+            [0, 0, 1000, 1000]
         )
         
         # Trigger another keypress
@@ -38,7 +38,7 @@ class AzulejoTest(unittest.TestCase):
 
         self.assertEqual(
             keybinding_obj.get_screen().get_active_window()['geometry'],
-            [0, 0, 300, 1000]
+            [0, 0, 600, 1000]
         )
         
         # Trigger another keypress
@@ -46,7 +46,7 @@ class AzulejoTest(unittest.TestCase):
 
         self.assertEqual(
             keybinding_obj.get_screen().get_active_window()['geometry'],
-            [0, 0, 700, 1000]
+            [0, 0, 1400, 1000]
         )
 
 
@@ -73,7 +73,7 @@ class AzulejoTest(unittest.TestCase):
 
         self.assertEqual(
             keybinding_obj.get_screen().get_active_window()['geometry'],
-            [0, 0, 1000, 1000]
+            [0, 0, 2000, 1000]
         )
         
 
@@ -95,20 +95,61 @@ class AzulejoTest(unittest.TestCase):
         import azulejo
         azulejo.run(True)
 
-        # Trigger a keypress
+        # Trigger a 2 window side by side
         keybinding_obj.action_key('<Super>2')
 
         self.assertEqual(
             keybinding_obj.get_screen().windows[0]['geometry'],
-            [0, 0, 500, 1000]
+            [0, 0, 1000, 1000]
         )
 
         self.assertEqual(
             keybinding_obj.get_screen().windows[1]['geometry'],
-            [501, 0, 500, 1000]
+            [1001, 0, 1000, 1000]
+        )
+        
+        # Trigger a 3 window side by side
+        keybinding_obj.action_key('<Super>3')
+
+        self.assertEqual(
+            keybinding_obj.get_screen().windows[0]['geometry'],
+            [0, 0, 1000, 1000]
         )
 
+        self.assertEqual(
+            keybinding_obj.get_screen().windows[1]['geometry'],
+            [1001, 0, 1000, 500]
+        )
 
+        self.assertEqual(
+            keybinding_obj.get_screen().windows[2]['geometry'],
+            [1001, 501, 1000, 500]
+        )
+       
+        # Trigger a 4 window side by side
+        keybinding_obj.action_key('<Super>4')
+
+        self.assertEqual(
+            keybinding_obj.get_screen().windows[0]['geometry'],
+            [0, 0, 1000, 500]
+        )
+
+        self.assertEqual(
+            keybinding_obj.get_screen().windows[1]['geometry'],
+            [1001, 0, 1000, 500]
+        )
+
+        self.assertEqual(
+            keybinding_obj.get_screen().windows[2]['geometry'],
+            [0, 501, 1000, 500]
+        )
+
+        self.assertEqual(
+            keybinding_obj.get_screen().windows[3]['geometry'],
+            [1001, 501, 1000, 500]
+        )
+
+        
 class KeyBinderDummy:
     """ Class this is used to allow keybindings to be caught and to be actioned """
 
@@ -240,13 +281,23 @@ class SingleTestScreenMock(AzulejoScreenMock):
     def __init__(self):
        
         self.monitor_geometry = [
-           gtk.gdk.Rectangle(x=0, y=0, width=1000, height=1000),
+           gtk.gdk.Rectangle(x=0, y=0, width=2000, height=1000),
         ]
 
         self.windows = [
            {
                'geometry': [ 0, 0, 10, 10 ],
                'active': True,
+               'monitor': 0,
+           },
+           {
+               'geometry': [ 200, 0, 5, 5 ],
+               'active': False,
+               'monitor': 0,
+           },
+           {
+               'geometry': [ 200, 0, 5, 5 ],
+               'active': False,
                'monitor': 0,
            },
            {
