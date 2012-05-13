@@ -14,13 +14,13 @@ def dispatcher(dis_param):
     func(azulejo_obj, param) 
 
         
-def run(main=True):    
+def run(test=False):    
 
     azulejo_obj = AzulejoController()
 
     logging.basicConfig(level=logging.DEBUG)
 
-    for action in AzulejoConfiguration(True).get_config_data():
+    for action in AzulejoConfiguration(test).get_config_data():
         
         keybinder.bind(
             action['keybind'], 
@@ -32,7 +32,19 @@ def run(main=True):
             )
         )        
 
-    if main:
+    # Detect if we are testing
+    if test:
+
+        # Special bind to pass out the main object for testing
+        # This is a little messy - TODO work out best way for this
+        keybinder.bind(
+            'all', 
+            None, 
+            azulejo_obj 
+        )  
+
+    else:
+        # Main loop for gtk
         gtk.main()
 
 
