@@ -32,11 +32,11 @@ class AzulejoController:
         self.arrange_base = ArrangeBase(self._screen)
 
         self._action_classes = {
+            'maximize': ArrangeMaximize(self._screen),     
+            'move_monitor': ArrangeMoveMonitor(self._screen),       
             'resize_single_window': ArrangeSingleWindow(self._screen),
             'resize_windows': ArrangeMultipleWindows(self._screen),
             'rotate_windows': ArrangeRotate(self._screen),
-            'maximize': ArrangeMaximize(self._screen),     
-            'move_monitor': ArrangeMoveMonitor(self._screen),       
         }
 
 
