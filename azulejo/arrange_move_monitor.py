@@ -11,26 +11,32 @@ class ArrangeMoveMonitor(ArrangeBase):
 
     def do(self, direction):
         """ Main function that performs the arrangement """
-        
-        window_original_geometry = self._screen.get_active_window_geometry()
+       
+        # No action if only one monitor
+        if self._screen.get_number_monitors() == 1:
+            return
 
         old_monitor = self._screen.get_active_window_monitor()
         old_monitor_geometry = self._screen.get_monitor_geometry(old_monitor) 
         
-        logging.debug("Window currently on monitor {}".format(old_monitor))
+        logging.debug("Window currently on monitor {}.  Moving {}".format(old_monitor, direction))
 
         new_monitor = old_monitor
 
+        # Work out if we have a new monitor number
         if direction == "left":
             if old_monitor > 0:
                 new_monitor = old_monitor - 1
         else:
-            if old_monitor < self._screen.get_number_monitors():
+            if old_monitor < self._screen.get_number_monitors() - 1:
                 new_monitor = old_monitor + 1
-        
+
         # Do we need to move the window?
         if new_monitor != old_monitor:
+        
+            logging.debug("Moving to monitor {}".format(new_monitor))
 
+            window_original_geometry = self._screen.get_active_window_geometry()
             new_monitor_geometry = self._screen.get_monitor_geometry(new_monitor) 
 
             # TODO deal with if the window is now too large for the new monitor
