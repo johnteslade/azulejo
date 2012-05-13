@@ -8,7 +8,7 @@
 },
 
 {
-    "name": "side-by-syde",
+    "name": "side-by-side",
     "keybind": "<Super>2",
     "function": "resize_windows",
     "parameters": [
