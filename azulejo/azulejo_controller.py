@@ -3,7 +3,6 @@ import time
 import logging
 
 from azulejo_screen import AzulejoScreen
-from arrange_base import ArrangeBase
 from arrange_single_window import ArrangeSingleWindow
 from arrange_maximize import ArrangeMaximize
 from arrange_move_monitor import ArrangeMoveMonitor
@@ -28,8 +27,6 @@ class AzulejoController:
 
         #variable to hold the amount of windows since the last arrangement
         self.arrangement_size = 0
-
-        self.arrange_base = ArrangeBase(self._screen)
 
         self._action_classes = {
             'maximize': ArrangeMaximize(self._screen),     
