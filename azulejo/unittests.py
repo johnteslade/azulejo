@@ -86,8 +86,8 @@ class AzulejoTest(unittest.TestCase):
         )
         
 
-    def test_side_by_side(self):
-        """ Test the side by side windows """  
+    def test_side_by_side_2(self):
+        """ Test the side by side 2 windows """  
         
         keybinding_obj = KeyBinderDummy()
 
@@ -108,7 +108,18 @@ class AzulejoTest(unittest.TestCase):
             screen.windows[1]['geometry'],
             [1001, 0, 1000, 1000]
         )
+
+
+    def test_side_by_side_3(self):
+        """ Test the side by side 3 windows """  
         
+        keybinding_obj = KeyBinderDummy()
+
+        screen = SingleTestScreenMock()
+
+        # Run the code under test
+        azulejo.run(True, screen, keybinding_obj)
+
         # Trigger a 3 window side by side
         keybinding_obj.action_key('<Super>3')
 
@@ -126,7 +137,18 @@ class AzulejoTest(unittest.TestCase):
             screen.windows[2]['geometry'],
             [1001, 501, 1000, 500]
         )
-       
+      
+
+    def test_side_by_side_4(self):
+        """ Test the side by side 4 windows """  
+        
+        keybinding_obj = KeyBinderDummy()
+
+        screen = SingleTestScreenMock()
+
+        # Run the code under test
+        azulejo.run(True, screen, keybinding_obj) 
+
         # Trigger a 4 window side by side
         keybinding_obj.action_key('<Super>4')
 
