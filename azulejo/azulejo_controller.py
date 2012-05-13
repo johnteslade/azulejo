@@ -45,7 +45,9 @@ class AzulejoController:
 
         # Force screen update
         self._screen.update()
-        
+       
+        logging.debug("Starting action {}".format(function))
+
         # Call the correct function
         self._action_classes[function].do(params)
 
