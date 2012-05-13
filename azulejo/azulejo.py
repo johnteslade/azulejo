@@ -14,10 +14,10 @@ def dispatcher(dis_param):
     azulejo_obj.do_action(function, params) 
 
         
-def run(test=False):    
+def run(test=False, screen_obj=None):    
     """ Main entry point of code """
 
-    azulejo_obj = AzulejoController()
+    azulejo_obj = AzulejoController(screen_obj)
 
     logging.basicConfig(level=logging.DEBUG)
 
@@ -33,19 +33,8 @@ def run(test=False):
             )
         )        
 
-    # Detect if we are testing
-    if test:
-
-        # Special bind to pass out the main object for testing
-        # This is a little messy - TODO work out best way for this
-        keybinder.bind(
-            'all', 
-            None,
-            azulejo_obj
-        )  
-
-    else:
-        # Main loop for gtk
+    # Main loop for gtk
+    if not test:
         gtk.main()
 
 

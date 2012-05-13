@@ -14,10 +14,14 @@ from arrange_rotate import ArrangeRotate
 
 class AzulejoController:
 
-    def __init__(self):
+    def __init__(self, screen_obj_in):
         """ Initialiser """
 
-        self._screen = AzulejoScreen() # Main screen object
+        # Set the main screen object
+        if screen_obj_in:
+            self._screen = screen_obj_in
+        else:
+            self._screen = AzulejoScreen()
 
         #because window resizing is not acurate we need a quick dirty workaround
         self.window_geometry_error_margin = 30
