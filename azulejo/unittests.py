@@ -1,3 +1,4 @@
+import logging
 import unittest
 from mock import patch
 import keybinder
@@ -111,6 +112,8 @@ class KeyBinderDummy:
         return self.saved_obj._screen
 
 
+
+
 class AzulejoScreenMock:
     """ Mock object for the screen """
 
@@ -161,7 +164,14 @@ class AzulejoScreenMock:
             if self.windows[x]['active']:
                 self.windows[x]['geometry'] = new_geometry
                 break
-                
+
+
+    def maximise_active_window(self):
+        """ Maximises the active window """ 
+
+        monitor_size = self.get_monitor_geometry(self.get_active_window_monitor())
+        self.move_active_window([monitor_size.x, monitor_size.y, monitor_size.width, monitor_size.height])
+
 
     def update(self):
         """ Forces and update """

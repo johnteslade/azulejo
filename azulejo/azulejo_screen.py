@@ -77,6 +77,14 @@ class AzulejoScreen:
         window.unmaximize()
         window.set_geometry(*geometry_list_args)
 
+    
+    def maximise_active_window(self):
+        """ Maximises the active window """
+
+        windows = self.get_all_windows()
+        curwin = windows[0]
+        curwin.maximize()
+    
 
     def update(self):
         """ Forces and update """
@@ -84,7 +92,7 @@ class AzulejoScreen:
         # Doesn't appear to do much
         wnck.screen_get_default().force_update()
 
-
+    
     
 
     def get_width(self):

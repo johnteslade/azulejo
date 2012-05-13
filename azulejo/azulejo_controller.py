@@ -158,9 +158,10 @@ class AzulejoController:
         #(windows_deq[0]).activate(int(time.time())) #not sure why it doesn't work. if uncommented causes other windows beyond the rotated ones to hide behind current ones even after pressing ctrl+tab
 
     def maximize(self, dummy):
-        windows = self._screen.get_all_windows()
-        curwin = windows[0]
-        curwin.maximize()
+        """ Maximise window """
+
+        self._screen.maximise_active_window()
+
 
     def force_update(self):
         """ Forces update on screen """
