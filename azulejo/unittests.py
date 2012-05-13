@@ -10,24 +10,17 @@ from test.screen_mocks import SingleTestScreenMock
 from test.key_binder import KeyBinderDummy
 
 
-
 class AzulejoTest(unittest.TestCase):
 
-    @patch.object(keybinder, 'bind')
-    def test_left_side(self, mock_my_method):
+    def test_left_side(self):
         """ Test the left side moving of windows """  
         
         keybinding_obj = KeyBinderDummy()
 
-        # Defined sideeffect for the key bind operation
-        def side_effect(key, dispatcher, dispatcher_params):
-            keybinding_obj.bind(key, dispatcher, dispatcher_params)
-        mock_my_method.side_effect = side_effect
-
         screen = SingleTestScreenMock()
 
         # Run the code under test
-        azulejo.run(True, screen)
+        azulejo.run(True, screen, keybinding_obj)
 
         # Trigger a keypress
         keybinding_obj.action_key('<Super>h')
@@ -54,21 +47,15 @@ class AzulejoTest(unittest.TestCase):
         )
 
 
-    @patch.object(keybinder, 'bind')
-    def test_maximise(self, mock_my_method):
+    def test_maximise(self):
         """ Test the maximising of active window """  
         
         keybinding_obj = KeyBinderDummy()
 
-        # Defined sideeffect for the key bind operation
-        def side_effect(key, dispatcher, dispatcher_params):
-            keybinding_obj.bind(key, dispatcher, dispatcher_params)
-        mock_my_method.side_effect = side_effect
-
         screen = SingleTestScreenMock()
 
         # Run the code under test
-        azulejo.run(True, screen)
+        azulejo.run(True, screen, keybinding_obj)
 
         # Trigger a keypress
         keybinding_obj.action_key('<Super>1')
@@ -79,21 +66,15 @@ class AzulejoTest(unittest.TestCase):
         )
         
 
-    @patch.object(keybinder, 'bind')
-    def test_side_by_side(self, mock_my_method):
+    def test_side_by_side(self):
         """ Test the side by side windows """  
         
         keybinding_obj = KeyBinderDummy()
 
-        # Defined sideeffect for the key bind operation
-        def side_effect(key, dispatcher, dispatcher_params):
-            keybinding_obj.bind(key, dispatcher, dispatcher_params)
-        mock_my_method.side_effect = side_effect
-
         screen = SingleTestScreenMock()
 
         # Run the code under test
-        azulejo.run(True, screen)
+        azulejo.run(True, screen, keybinding_obj)
 
         # Trigger a 2 window side by side
         keybinding_obj.action_key('<Super>2')

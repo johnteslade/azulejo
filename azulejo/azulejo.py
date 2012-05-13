@@ -14,16 +14,19 @@ def dispatcher(dis_param):
     azulejo_obj.do_action(function, params) 
 
         
-def run(test=False, screen_obj=None):    
+def run(test=False, screen_obj=None, keybinder_obj=None):    
     """ Main entry point of code """
 
     azulejo_obj = AzulejoController(screen_obj)
 
     logging.basicConfig(level=logging.DEBUG)
 
+    if keybinder_obj == None:
+        keybinder_obj = keybinder
+
     for action in AzulejoConfiguration(test).get_config_data():
         
-        keybinder.bind(
+        keybinder_obj.bind(
             action['keybind'], 
             dispatcher, 
             (
