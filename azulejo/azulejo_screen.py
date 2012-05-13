@@ -22,6 +22,7 @@ class AzulejoScreen:
     def get_all_windows(self):
         """ Gets all windows in the screen """
 
+        # TODO this could be a simple lambda
         def f_normal_window(window):
             if window.get_window_type() == wnck.WindowType.__enum_values__[0]:
                 return True
@@ -69,15 +70,29 @@ class AzulejoScreen:
 
 
     def move_active_window(self, new_geometry):
-        """ Moves the active window the specified geometry """
+        """ Moves the active window """
         
-        geometry_list_args = [0, 255]
-        window = wnck.screen_get_default().get_active_window()    
-        geometry_list_args.extend(map (int, new_geometry))
+        self.move_window(wnck.screen_get_default().get_active_window(), new_geometry)    
+
+
+    def move_windows(self, new_geometry_list):
+        """ Moves a number of windows - starting from the active """
+
+        filtered_windows = self.get_all_windows()
+
+        for x in xrange(len(new_geometry_list)):
+            if x < len(filter_windows):
+                self.move_window(filtered_windows[x], new_geometry_list[x])
+
+
+    def move_window(self, window, new_geometry):
+        """ Moves the window to the specified geometry """
+        
+        geometry_list_args = [0, 255] + new_geometry
         window.unmaximize()
         window.set_geometry(*geometry_list_args)
 
-    
+
     def maximise_active_window(self):
         """ Maximises the active window """
 

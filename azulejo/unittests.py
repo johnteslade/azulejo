@@ -49,6 +49,7 @@ class AzulejoTest(unittest.TestCase):
             [0, 0, 700, 1000]
         )
 
+
     @patch.object(keybinder, 'bind')
     def test_maximise(self, mock_my_method):
         """ Test the maximising of active window """  
@@ -75,6 +76,38 @@ class AzulejoTest(unittest.TestCase):
             [0, 0, 1000, 1000]
         )
         
+
+    @patch.object(keybinder, 'bind')
+    def test_side_by_side(self, mock_my_method):
+        """ Test the side by side windows """  
+        
+        keybinding_obj = KeyBinderDummy()
+
+        # Defined sideeffect for the key bind operation
+        def side_effect(key, dispatcher, dispatcher_params):
+            keybinding_obj.bind(key, dispatcher, dispatcher_params)
+        mock_my_method.side_effect = side_effect
+
+        # Monkey patch
+        azulejo_screen.AzulejoScreen = SingleTestScreenMock
+
+        # Import and run the code under test
+        import azulejo
+        azulejo.run(True)
+
+        # Trigger a keypress
+        keybinding_obj.action_key('<Super>2')
+
+        self.assertEqual(
+            keybinding_obj.get_screen().windows[0]['geometry'],
+            [0, 0, 500, 1000]
+        )
+
+        self.assertEqual(
+            keybinding_obj.get_screen().windows[1]['geometry'],
+            [501, 0, 500, 1000]
+        )
+
 
 class KeyBinderDummy:
     """ Class this is used to allow keybindings to be caught and to be actioned """
@@ -127,7 +160,7 @@ class AzulejoScreenMock:
     def get_all_windows(self):
         """ Gets all windows in the screen """
 
-        raise NotImplementedError
+        return self.windows
 
     
     def get_monitor_geometry(self, monitor=None):
@@ -164,6 +197,13 @@ class AzulejoScreenMock:
             if self.windows[x]['active']:
                 self.windows[x]['geometry'] = new_geometry
                 break
+    
+
+    def move_windows(self, new_geometry_list):
+        """ Moves the active window the specified geometry """
+        
+        for x in xrange(len(new_geometry_list)):
+            self.windows[x]['geometry'] = new_geometry_list[x]
 
 
     def maximise_active_window(self):
@@ -171,6 +211,20 @@ class AzulejoScreenMock:
 
         monitor_size = self.get_monitor_geometry(self.get_active_window_monitor())
         self.move_active_window([monitor_size.x, monitor_size.y, monitor_size.width, monitor_size.height])
+   
+   
+    def get_width(self):
+        """ Returns width of screen """
+       
+        # TODO not useful for multimonitor
+        return self.monitor_geometry[0].width 
+
+
+    def get_height(self):
+        """ Returns height of screen """
+        
+        # TODO not useful for multimonitor
+        return self.monitor_geometry[0].height
 
 
     def update(self):

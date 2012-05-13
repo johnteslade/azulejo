@@ -79,27 +79,15 @@ class AzulejoController:
 
 
     def resize_windows(self, arrangement):
-        arrangement_numeric = self.parse_arrangement(arrangement)
-        #print arrangement_numeric
-        filtered_windows = self._screen.get_all_windows()
-        amount_of_windows = len(filtered_windows)     
-        
-        if amount_of_windows < len(arrangement_numeric):
-            arrangement_numeric = arrangement_numeric[:amount_of_windows]
-      
-        i = 0
-        self.arrangement_size = len(arrangement_numeric) #global scope variable, also used to rotate windows
-        while i < self.arrangement_size:
-            geometry_list_args = [0, 255]
-            index = self.arrangement_size - (i + 1) #we must start in the end in order to keep window order correct
-            geometry_list_args.extend(map (int, arrangement_numeric[index]))
-            filtered_windows[index].unmaximize()
-            filtered_windows[index].set_geometry(*geometry_list_args)
-            i += 1
+        """ Resizes multiple windows """
 
+        self._screen.move_windows(
+            self.parse_arrangement(arrangement)
+        )
 
 
     def resize_single_window(self, geometries):
+        """ Resizes just a single window """
 
         def similar_geometries(ga, gb):
             for i in range(4):
