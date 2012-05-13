@@ -11,10 +11,10 @@ def dispatcher(dis_param):
     (func, azulejo_obj, param) = dis_param
 
     azulejo_obj.force_update()
-    func(azulejo_obj, param)    
-    
-    
-def run():    
+    func(azulejo_obj, param) 
+
+        
+def run(main=True):    
 
     azulejo_obj = AzulejoController()
 
@@ -32,7 +32,8 @@ def run():
             )
         )        
 
-    gtk.main()
+    if main:
+        gtk.main()
 
 
 
