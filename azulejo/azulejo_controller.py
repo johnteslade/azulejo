@@ -1,13 +1,13 @@
 from collections import deque
-import time
 import logging
+import time
 
-from azulejo_screen import AzulejoScreen
-from arrange_single_window import ArrangeSingleWindow
 from arrange_maximize import ArrangeMaximize
 from arrange_move_monitor import ArrangeMoveMonitor
 from arrange_multiple_windows import ArrangeMultipleWindows
 from arrange_rotate import ArrangeRotate
+from arrange_single_window import ArrangeSingleWindow
+from azulejo_screen import AzulejoScreen
 
 
 
