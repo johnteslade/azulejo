@@ -9,9 +9,12 @@ from arrange_base import ArrangeBase
 class ArrangeMoveMonitor(ArrangeBase):
     """ Class to move a window to another monitor """
 
-    def do(self, direction):
+    def do(self, params):
         """ Main function that performs the arrangement """
        
+        direction = params[0]       
+        resize = params[1]       
+
         # No action if only one monitor
         if self._screen.get_number_monitors() == 1:
             return
@@ -50,6 +53,9 @@ class ArrangeMoveMonitor(ArrangeBase):
             # Now move the window
             self._screen.move_active_window(new_position)
 
+            # Maximise the window if required
+            if resize == "max":
+                self._screen.maximise_active_window()
 
             
 

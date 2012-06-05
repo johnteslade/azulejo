@@ -45,7 +45,7 @@
     "description": "move window to monitor to left",
     "keybind": "<Super>q",
     "function": "move_monitor",
-    "parameters": "left"
+    "parameters": ["left", ""]
 },
 
 {
@@ -53,7 +53,23 @@
     "description": "move window to monitor to right",
     "keybind": "<Super>w",
     "function": "move_monitor",
-    "parameters": "right"
+    "parameters": ["right", ""]
+},
+
+{
+    "name": "window-to-monitor-left-and-max",
+    "description": "move window to monitor to left and maximise",
+    "keybind": "<Super>a",
+    "function": "move_monitor",
+    "parameters": ["left", "max"]
+},
+
+{
+    "name": "window-to-monitor-right-and-max",
+    "description": "move window to monitor to right and maximise",
+    "keybind": "<Super>s",
+    "function": "move_monitor",
+    "parameters": ["right", "max"]
 },
 
 {

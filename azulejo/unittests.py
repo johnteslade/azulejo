@@ -63,6 +63,39 @@ class AzulejoTest(unittest.TestCase):
         )
         
         self.assertEqual(screen.get_active_window_monitor(), 1)
+    
+    
+    def test_move_monitor_maximise(self):
+        """ Test the moving of window to a monitor and maximise """  
+        
+        keybinding_obj = KeyBinderDummy()
+
+        screen = MultipleTestScreenMock()
+
+        # Run the code under test
+        azulejo.run(True, screen, keybinding_obj)
+
+        self.assertEqual(screen.get_active_window_monitor(), 1)
+
+        # Move left
+        keybinding_obj.action_key('<Super>a')
+
+        self.assertEqual(
+            screen.get_active_window()['geometry'],
+            [0, 0, 200, 100]
+        )
+       
+        self.assertEqual(screen.get_active_window_monitor(), 0)
+        
+        # Move right
+        keybinding_obj.action_key('<Super>s')
+        
+        self.assertEqual(
+            screen.get_active_window()['geometry'],
+            [200, 0, 200, 100]
+        )
+        
+        self.assertEqual(screen.get_active_window_monitor(), 1)
 
 
     def test_left_side(self):
