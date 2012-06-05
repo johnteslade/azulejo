@@ -38,8 +38,9 @@ class ScreenMockBase:
         for x in xrange(len(self.monitor_geometry)):
 
             monitor = self.monitor_geometry[x]
+            window = self.get_active_window()['geometry']
 
-            if (self.get_active_window()['geometry'][0] >= monitor.x) and (self.get_active_window()['geometry'][0] <= monitor.x + monitor.width) and (self.get_active_window()['geometry'][1] >= monitor.y) and (self.get_active_window()['geometry'][1] <= monitor.y + monitor.height):
+            if (window[0] >= monitor.x) and (window[0] < monitor.x + monitor.width) and (window[1] >= monitor.y) and (window[1] < monitor.y + monitor.height):
                 return x
        
         # If we get here then we have a mismatch between windows and monitors
