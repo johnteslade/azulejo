@@ -26,15 +26,16 @@ def run(test=False, screen_obj=None, keybinder_obj=None):
 
     for action in AzulejoConfiguration(test).get_config_data():
         
-        keybinder_obj.bind(
-            action['keybind'], 
-            dispatcher, 
-            (
-                azulejo_obj, 
-                action['function'], 
-                action['parameters']
-            )
-        )        
+        for key in action['keybind']:
+            keybinder_obj.bind(
+                key, 
+                dispatcher, 
+                (
+                    azulejo_obj, 
+                    action['function'], 
+                    action['parameters']
+                )
+            )        
 
     # Main loop for gtk
     if not test:
