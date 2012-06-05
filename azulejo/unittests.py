@@ -24,7 +24,7 @@ class AzulejoTest(unittest.TestCase):
         azulejo.run(True, screen, keybinding_obj)
 
         # Trigger a keypress
-        keybinding_obj.action_key('<Super>h')
+        keybinding_obj.action_key('<Ctrl><Super>h')
 
         self.assertEqual(
             screen.get_active_window()['geometry'],
@@ -45,7 +45,7 @@ class AzulejoTest(unittest.TestCase):
         self.assertEqual(screen.get_active_window_monitor(), 1)
 
         # Move left
-        keybinding_obj.action_key('<Super>q')
+        keybinding_obj.action_key('<Ctrl><Super>q')
 
         self.assertEqual(
             screen.get_active_window()['geometry'],
@@ -55,7 +55,7 @@ class AzulejoTest(unittest.TestCase):
         self.assertEqual(screen.get_active_window_monitor(), 0)
 
         # Move right
-        keybinding_obj.action_key('<Super>w')
+        keybinding_obj.action_key('<Ctrl><Super>w')
 
         self.assertEqual(
             screen.get_active_window()['geometry'],
@@ -78,7 +78,7 @@ class AzulejoTest(unittest.TestCase):
         self.assertEqual(screen.get_active_window_monitor(), 1)
 
         # Move left
-        keybinding_obj.action_key('<Super>a')
+        keybinding_obj.action_key('<Ctrl><Super>a')
 
         self.assertEqual(
             screen.get_active_window()['geometry'],
@@ -88,7 +88,7 @@ class AzulejoTest(unittest.TestCase):
         self.assertEqual(screen.get_active_window_monitor(), 0)
         
         # Move right
-        keybinding_obj.action_key('<Super>s')
+        keybinding_obj.action_key('<Ctrl><Super>s')
         
         self.assertEqual(
             screen.get_active_window()['geometry'],
@@ -109,7 +109,7 @@ class AzulejoTest(unittest.TestCase):
         azulejo.run(True, screen, keybinding_obj)
 
         # Trigger a keypress
-        keybinding_obj.action_key('<Super>h')
+        keybinding_obj.action_key('<Ctrl><Super>h')
 
         self.assertEqual(
             screen.get_active_window()['geometry'],
@@ -117,7 +117,7 @@ class AzulejoTest(unittest.TestCase):
         )
         
         # Trigger another keypress
-        keybinding_obj.action_key('<Super>h')
+        keybinding_obj.action_key('<Ctrl><Super>h')
 
         self.assertEqual(
             screen.get_active_window()['geometry'],
@@ -125,7 +125,7 @@ class AzulejoTest(unittest.TestCase):
         )
         
         # Trigger another keypress
-        keybinding_obj.action_key('<Super>h')
+        keybinding_obj.action_key('<Ctrl><Super>h')
 
         self.assertEqual(
             screen.get_active_window()['geometry'],
@@ -144,7 +144,7 @@ class AzulejoTest(unittest.TestCase):
         azulejo.run(True, screen, keybinding_obj)
 
         # Trigger a keypress
-        keybinding_obj.action_key('<Super>1')
+        keybinding_obj.action_key('<Ctrl><Super>1')
 
         self.assertEqual(
             screen.get_active_window()['geometry'],
@@ -163,7 +163,7 @@ class AzulejoTest(unittest.TestCase):
         azulejo.run(True, screen, keybinding_obj)
 
         # Trigger a 2 window side by side
-        keybinding_obj.action_key('<Super>2')
+        keybinding_obj.action_key('<Ctrl><Super>2')
 
         self.assertEqual(
             screen.windows[0]['geometry'],
@@ -187,7 +187,7 @@ class AzulejoTest(unittest.TestCase):
         azulejo.run(True, screen, keybinding_obj)
 
         # Trigger a 3 window side by side
-        keybinding_obj.action_key('<Super>3')
+        keybinding_obj.action_key('<Ctrl><Super>3')
 
         self.assertEqual(
             screen.windows[0]['geometry'],
@@ -216,7 +216,7 @@ class AzulejoTest(unittest.TestCase):
         azulejo.run(True, screen, keybinding_obj) 
 
         # Trigger a 4 window side by side
-        keybinding_obj.action_key('<Super>4')
+        keybinding_obj.action_key('<Ctrl><Super>4')
 
         self.assertEqual(
             screen.windows[0]['geometry'],

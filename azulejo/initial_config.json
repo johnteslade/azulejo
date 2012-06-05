@@ -2,14 +2,14 @@
 
 {
     "name": "maximize",
-    "keybind": "<Super>1",
+    "keybind": "<Ctrl><Super>1",
     "function": "maximize",
     "parameters": []
 },
 
 {
     "name": "side-by-side",
-    "keybind": "<Super>2",
+    "keybind": "<Ctrl><Super>2",
     "function": "resize_windows",
     "parameters": [
         [0, 0, "w/2", "h"],
@@ -19,7 +19,7 @@
 
 {
     "name": "four-pane",
-    "keybind": "<Super>4",
+    "keybind": "<Ctrl><Super>4",
     "function": "resize_windows",
     "parameters": [
         [0, 0, "w/2", "h/2"],
@@ -31,7 +31,7 @@
 
 {
     "name": "one-big-two-small",
-    "keybind": "<Super>3",
+    "keybind": "<Ctrl><Super>3",
     "function": "resize_windows",
     "parameters": [
         [0, 0, "w*0.5", "h"],
@@ -43,7 +43,7 @@
 {
     "name": "window-to-monitor-left",
     "description": "move window to monitor to left",
-    "keybind": "<Super>q",
+    "keybind": "<Ctrl><Super>q",
     "function": "move_monitor",
     "parameters": ["left", ""]
 },
@@ -51,7 +51,7 @@
 {
     "name": "window-to-monitor-right",
     "description": "move window to monitor to right",
-    "keybind": "<Super>w",
+    "keybind": "<Ctrl><Super>w",
     "function": "move_monitor",
     "parameters": ["right", ""]
 },
@@ -59,7 +59,7 @@
 {
     "name": "window-to-monitor-left-and-max",
     "description": "move window to monitor to left and maximise",
-    "keybind": "<Super>a",
+    "keybind": "<Ctrl><Super>a",
     "function": "move_monitor",
     "parameters": ["left", "max"]
 },
@@ -67,7 +67,7 @@
 {
     "name": "window-to-monitor-right-and-max",
     "description": "move window to monitor to right and maximise",
-    "keybind": "<Super>s",
+    "keybind": "<Ctrl><Super>s",
     "function": "move_monitor",
     "parameters": ["right", "max"]
 },
@@ -75,7 +75,7 @@
 {
     "name": "window-to-the-left-side",
     "description": "move window to the left part of the screen, cycle through possible geometries",
-    "keybind": "<Super>h",
+    "keybind": "<Ctrl><Super>h",
     "function": "resize_single_window",
     "parameters": [
         [0, 0, "w*0.5", "h"],
@@ -87,7 +87,7 @@
 {
     "name": "window-to-the-right-side",
     "description": "move window to the right part of the screen, cycle through possible geometries",
-    "keybind": "<Super>k",
+    "keybind": "<Ctrl><Super>k",
     "function": "resize_single_window",
     "parameters": [
         ["w*0.5", 0, "w*0.5", "h"],
@@ -98,7 +98,7 @@
 
 {
     "name": "window-to-southwest",
-    "keybind": "<Super>b",
+    "keybind": "<Ctrl><Super>b",
     "function": "resize_single_window",
     "parameters": [
         [0, "h*0.5", "w*0.5", "h*0.5"],
@@ -111,7 +111,7 @@
 
 {
     "name": "window-to-southeast",
-    "keybind": "<Super>n",
+    "keybind": "<Ctrl><Super>n",
     "function": "resize_single_window",
     "parameters": [
         ["0.5*w", "h*0.5", "w*0.5", "h*0.5"],
@@ -123,7 +123,7 @@
 
 {
     "name": "window-to-northwest",
-    "keybind": "<Super>y",
+    "keybind": "<Ctrl><Super>y",
     "function": "resize_single_window",
     "parameters": [
         [0, 0, "w*0.5", "h*0.5"],
@@ -135,7 +135,7 @@
 
 {
     "name": "window-to-northeast",
-    "keybind": "<Super>u",
+    "keybind": "<Ctrl><Super>u",
     "function": "resize_single_window",
     "parameters": [
         ["w*0.5", 0, "w*0.5", "h*0.5"],
@@ -148,7 +148,7 @@
 {
     "name": "rotate-windows-positions",
     "description": "rotates windows' positions, rotation queue will be the size of last arrangement or, if smaller, the number of visible windows ",
-    "keybind": "<Super>r",
+    "keybind": "<Ctrl><Super>r",
     "function": "rotate_windows",
     "parameters": []
 }
