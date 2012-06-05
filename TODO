@@ -4,6 +4,9 @@
  
  * Call screen.force_update after each operation
 
- * Use inheritence for the different types of changes.  Then use a factory to create them for bindings.
+* Focus on multi-monitor tools
+    - Cycle through monitors
+    - Switch maximised monitors
+    - Move all to current monitor
 
 
