@@ -1,4 +1,4 @@
-
+import gtk
 
 
 class ScreenMockBase:
@@ -20,7 +20,15 @@ class ScreenMockBase:
     def get_monitor_geometry(self, monitor=None):
         """ Returns a rectangle with geometry of the specified monitor """
 
-        return self.monitor_geometry[monitor]
+        if monitor != None:
+            return gtk.gdk.Rectangle(
+                x=0, 
+                y=0, 
+                width=max([ monitor.x + monitor.width for monitor in self.monitor_geometry]), 
+                height=max([ monitor.y + monitor.height for monitor in self.monitor_geometry]), 
+            )
+        else:
+            return self.monitor_geometry[monitor]
 
 
     def get_active_window(self):
