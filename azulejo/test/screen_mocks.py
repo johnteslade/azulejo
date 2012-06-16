@@ -36,9 +36,9 @@ class MultipleTestScreenMock(ScreenMockBase):
     
     Mock for multiple screens
     
-    In a simple side by side configuration where the active screen is on the 2nd monitor
+    In a simple side by side configuration where the active window is on the 2nd monitor
 
-    TODO addition types of multiple test config:
+    TODO additional types of multiple test config:
         - two monitors arranged top and bottom
         - >2 monitors
         - monitors where one is larger than the other (and moving a too large window to smaller one)
