@@ -238,7 +238,31 @@ class AzulejoTest(unittest.TestCase):
             [1001, 501, 1000, 500]
         )
 
+    def test_move_window(self):
+        """ Test the moving of a window on the screen """  
+        
+        keybinding_obj = KeyBinderDummy()
 
+        screen = SingleTestScreenMock()
+
+        # Run the code under test
+        azulejo.run(True, screen, keybinding_obj)
+
+        # Move northwest
+        keybinding_obj.action_key('<Super>KP_7')
+
+        self.assertEqual(
+            screen.get_active_window()['geometry'],
+            [0, 0, 50, 100]
+        )
+        
+        # Move southeast
+        keybinding_obj.action_key('<Super>KP_3')
+
+        self.assertEqual(
+            screen.get_active_window()['geometry'],
+            [1950, 900, 50, 100]
+        )      
 
 if __name__ == '__main__':
     unittest.main()

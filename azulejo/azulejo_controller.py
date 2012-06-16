@@ -4,6 +4,7 @@ import time
 
 from arrange_maximize import ArrangeMaximize
 from arrange_move_monitor import ArrangeMoveMonitor
+from arrange_move_window import ArrangeMoveWindow
 from arrange_multiple_windows import ArrangeMultipleWindows
 from arrange_rotate import ArrangeRotate
 from arrange_single_window import ArrangeSingleWindow
@@ -31,6 +32,7 @@ class AzulejoController:
         self._action_classes = {
             'maximize': ArrangeMaximize(self._screen),     
             'move_monitor': ArrangeMoveMonitor(self._screen),       
+            'move_single_window': ArrangeMoveWindow(self._screen),       
             'resize_single_window': ArrangeSingleWindow(self._screen),
             'resize_windows': ArrangeMultipleWindows(self._screen),
             'rotate_windows': ArrangeRotate(self._screen),

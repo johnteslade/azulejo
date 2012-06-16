@@ -165,6 +165,70 @@
 },
 
 {
+    "name": "move-window-to-north",
+    "description": "move-window-to-*: moves the window in a direction. the window keeps it's size",
+    "keybind": ["<Super>KP_Up", "<Super>KP_8"],
+    "function": "move_single_window",
+    "parameters": ["screen_width/2-window_width/2", "0"]
+},
+
+{
+    "name": "move-window-to-northeast",
+    "keybind": ["<Super>KP_Page_Up", "<Super>KP_9"],
+    "function": "move_single_window",
+    "parameters": ["screen_width-window_width", "0"]
+},
+
+{
+    "name": "move-window-to-east",
+    "keybind": ["<Super>KP_Right", "<Super>KP_6"],
+    "function": "move_single_window",
+    "parameters": ["screen_width-window_width", "screen_height/2-window_height/2"]
+},
+
+{
+    "name": "move-window-to-southeast",
+    "keybind": ["<Super>KP_Page_Down", "<Super>KP_3"],
+    "function": "move_single_window",
+    "parameters": ["screen_width-window_width", "screen_height-window_height"]
+},
+
+{
+    "name": "move-window-to-south",
+    "keybind": ["<Super>KP_Down", "<Super>KP_2"],
+    "function": "move_single_window",
+    "parameters": ["screen_width/2-window_width/2", "screen_height-window_height"]
+},
+
+{
+    "name": "move-window-to-southwest",
+    "keybind": ["<Super>KP_End", "<Super>KP_1"],
+    "function": "move_single_window",
+    "parameters": ["0", "screen_height-window_height"]
+},
+
+{
+    "name": "move-window-to-west",
+    "keybind": ["<Super>KP_Left", "<Super>KP_4"],
+    "function": "move_single_window",
+    "parameters": ["0", "screen_height/2-window_height/2"]
+},
+
+{
+    "name": "move-window-to-northwest",
+    "keybind": ["<Super>KP_Home", "<Super>KP_7"],
+    "function": "move_single_window",
+    "parameters": ["0", "0"]
+},
+
+{
+    "name": "move-window-to-center",
+    "keybind": ["<Super>KP_Begin", "<Super>KP_5"],
+    "function": "move_single_window",
+    "parameters": ["screen_width/2-window_width/2", "screen_height/2-window_height/2"]
+},
+
+{
     "name": "rotate-windows-positions",
     "description": "rotates windows' positions, rotation queue will be the size of last arrangement or, if smaller, the number of visible windows ",
     "keybind": ["<Ctrl><Super>r"],

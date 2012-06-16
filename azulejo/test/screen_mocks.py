@@ -13,7 +13,7 @@ class SingleTestScreenMock(ScreenMockBase):
 
         self.windows = [
            {
-               'geometry': [ 0, 0, 10, 10 ],
+               'geometry': [ 50, 80, 50, 100 ],
                'active': True,
            },
            {
