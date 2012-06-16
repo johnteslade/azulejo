@@ -8,7 +8,7 @@ class AzulejoScreen:
     
     Class to hold details of the current screen 
     
-    This it to partially remove the direct dependency on gtk in the main class (potentially easier to test) 
+    This is to encapsulate the gtk that actually communiates with the system.  This will allow us to change libraries if needed and also allows the creation of a mock screen object for testing.
 
     """
 
