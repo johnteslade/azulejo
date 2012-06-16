@@ -59,7 +59,7 @@
 {
     "name": "window-to-monitor-left-and-max",
     "description": "move window to monitor to left and maximise",
-    "keybind": ["<Ctrl><Super>a", "<Super><Ctrl>KP_Home", "<Super><Ctrl>KP_8"],
+    "keybind": ["<Ctrl><Super>a", "<Super><Ctrl>KP_Home", "<Super><Ctrl>KP_7"],
     "function": "move_monitor",
     "parameters": ["left", "max"]
 },
