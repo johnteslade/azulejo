@@ -61,6 +61,12 @@ class ScreenMockBase:
         return self.get_active_window()['geometry']
 
 
+    def get_active_window_monitor_geometry(self):
+        """ Returns the geometry of the monitor containing the active window """
+
+        return self.get_monitor_geometry(self.get_active_window_monitor())
+
+
     def move_active_window(self, new_geometry):
         """ Moves the active window the specified geometry """
         

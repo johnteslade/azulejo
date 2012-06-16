@@ -60,6 +60,12 @@ class AzulejoScreen:
         return gtk.gdk.screen_get_default().get_monitor_at_point(active_window_geo[0], active_window_geo[1]) 
 
 
+    def get_active_window_monitor_geometry(self):
+        """ Returns the geometry of the monitor containing the active window """
+
+        return self.get_monitor_geometry(self.get_active_window_monitor())
+
+
     def get_active_window_geometry(self):
         """ Returns the geometry of the current active window """
 
