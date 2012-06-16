@@ -89,9 +89,9 @@
     "keybind": ["<Super><Alt>KP_Down", "<Super><Alt>KP_2"],
     "function": "resize_single_window",
     "parameters": [
-        ["0", "h * 0.5", "w", "h * 0.5"],
-        ["0", "h-h * 0.3", "w", "h * 0.3"],
-        ["0", "h * 0.7", "w", "h * 0.7"]
+        [0, "h * 0.5", "w", "h * 0.5"],
+        [0, "h * 0.7", "w", "h * 0.3"],
+        [0, "h * 0.3", "w", "h * 0.7"]
     ]
 },
 
