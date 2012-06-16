@@ -23,8 +23,8 @@ class ArrangeMoveWindow(ArrangeBase):
         screen_height = current_monitor_geometry[3]
         
         new_geometry = [
-            eval(geometries[0]), 
-            eval(geometries[1]),
+            current_monitor_geometry[0] + eval(geometries[0]), 
+            current_monitor_geometry[1] + eval(geometries[1]),
             window_original_geometry[2],
             window_original_geometry[3]
         ]

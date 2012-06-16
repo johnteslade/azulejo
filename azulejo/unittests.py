@@ -262,7 +262,33 @@ class AzulejoTest(unittest.TestCase):
         self.assertEqual(
             screen.get_active_window()['geometry'],
             [1950, 900, 50, 100]
-        )      
+        )   
+
+    def test_move_window_multi_monitor(self):
+        """ Test the moving of a window on the screen when using multiple monitors"""  
+        
+        keybinding_obj = KeyBinderDummy()
+
+        screen = MultipleTestScreenMock()
+
+        # Run the code under test
+        azulejo.run(True, screen, keybinding_obj)
+
+        # Move northwest
+        keybinding_obj.action_key('<Super>KP_7')
+
+        self.assertEqual(
+            screen.get_active_window()['geometry'],
+            [200, 0, 20, 30]
+        )
+        
+        # Move southeast
+        keybinding_obj.action_key('<Super>KP_3')
+
+        self.assertEqual(
+            screen.get_active_window()['geometry'],
+            [380, 70, 20, 30]
+        )     
 
 if __name__ == '__main__':
     unittest.main()
