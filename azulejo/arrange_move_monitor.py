@@ -36,8 +36,6 @@ class ArrangeMoveMonitor(ArrangeBase):
 
         # Do we need to move the window?
         if new_monitor != old_monitor:
-        
-            logging.debug("Moving to monitor {}".format(new_monitor))
 
             window_original_geometry = self._screen.get_active_window_geometry()
             new_monitor_geometry = self._screen.get_monitor_geometry(new_monitor) 
@@ -50,12 +48,15 @@ class ArrangeMoveMonitor(ArrangeBase):
                 window_original_geometry[3], 
             ]
             
+            logging.debug("Moving to monitor {} and geometry {}".format(new_monitor, new_position))
+
             # Now move the window
             self._screen.move_active_window(new_position)
 
-        # Maximise the window if required - always do this even if not moving
-        if resize == "max":
-            self._screen.maximise_active_window()
+            # Maximise the window if required
+            if resize == "max":
+                logging.debug("Maximising window")
+                self._screen.maximise_active_window()
 
             
 
