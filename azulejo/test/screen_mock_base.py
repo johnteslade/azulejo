@@ -20,7 +20,7 @@ class ScreenMockBase:
     def get_monitor_geometry(self, monitor=None):
         """ Returns a rectangle with geometry of the specified monitor """
 
-        if monitor != None:
+        if monitor == None:
             return gtk.gdk.Rectangle(
                 x=0, 
                 y=0, 
