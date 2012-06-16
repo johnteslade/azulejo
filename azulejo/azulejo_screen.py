@@ -15,8 +15,7 @@ class AzulejoScreen:
     def __init__(self):
         """ Initialiser """
         
-        self.maximized_window_geometry = gtk.gdk.get_default_root_window().property_get('_NET_WORKAREA')[2][:4]
-        self.upper_corner = self.maximized_window_geometry[:2]
+        pass
 
 
     def get_all_windows(self):
@@ -108,22 +107,6 @@ class AzulejoScreen:
 
         # Doesn't appear to do much
         wnck.screen_get_default().force_update()
-
-    
-    
-
-    def get_width(self):
-        """ Returns width of screen """
-        
-        return self.maximized_window_geometry[2] 
-
-
-    def get_height(self):
-        """ Returns height of screen """
-        
-        return self.maximized_window_geometry[3] 
-
-
 
 
 

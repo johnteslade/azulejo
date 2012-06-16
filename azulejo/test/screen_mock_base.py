@@ -83,20 +83,6 @@ class ScreenMockBase:
 
         return len(self.monitor_geometry)
 
-   
-    def get_width(self):
-        """ Returns width of screen """
-       
-        # TODO not useful for multimonitor
-        return self.monitor_geometry[0].width 
-
-
-    def get_height(self):
-        """ Returns height of screen """
-        
-        # TODO not useful for multimonitor
-        return self.monitor_geometry[0].height
-
 
     def update(self):
         """ Forces and update """
