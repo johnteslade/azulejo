@@ -43,7 +43,7 @@
 {
     "name": "window-to-monitor-left",
     "description": "move window to monitor to left",
-    "keybind": ["<Ctrl><Super>q", "<Super><Ctrl>KP_Left","<Super><Ctrl>KP_4"],
+    "keybind": ["<Ctrl><Super>q", "<Super><Ctrl>KP_Left", "<Super><Ctrl>KP_4"],
     "function": "move_monitor",
     "parameters": ["left", ""]
 },
@@ -51,7 +51,7 @@
 {
     "name": "window-to-monitor-right",
     "description": "move window to monitor to right",
-    "keybind": ["<Ctrl><Super>w", "<Super><Ctrl>KP_Right","<Super><Ctrl>KP_6"],
+    "keybind": ["<Ctrl><Super>w", "<Super><Ctrl>KP_Right", "<Super><Ctrl>KP_6"],
     "function": "move_monitor",
     "parameters": ["right", ""]
 },
@@ -59,7 +59,7 @@
 {
     "name": "window-to-monitor-left-and-max",
     "description": "move window to monitor to left and maximise",
-    "keybind": ["<Ctrl><Super>a", "<Super><Ctrl>KP_Home","<Super><Ctrl>KP_7"],
+    "keybind": ["<Ctrl><Super>a", "<Super><Ctrl>KP_Home", "<Super><Ctrl>KP_8"],
     "function": "move_monitor",
     "parameters": ["left", "max"]
 },
@@ -73,32 +73,32 @@
 },
 
 {
-"name":"window-to-north",
-"description": "window-to-*: moves the window in a direction and resizes it. Using the key binding multiple times, cycles through possible window sizes",
-"keybind": ["<Super><Alt>KP_Up","<Super><Alt>KP_8"],
-"function" : "resize_single_window",
-"parameters":[
-    [0,0,"w","h*0.5"],
-    [0,0,"w","h*0.3"],
-    [0,0,"w","h*0.7"]
+    "name": "window-to-north",
+    "description": "window-to-*: moves the window in a direction and resizes it. Using the key binding multiple times, cycles through possible window sizes",
+    "keybind": ["<Super><Alt>KP_Up", "<Super><Alt>KP_8"],
+    "function": "resize_single_window",
+    "parameters": [
+        [0, 0, "w", "h*0.5"],
+        [0, 0, "w", "h*0.3"],
+        [0, 0, "w", "h*0.7"]
     ]
 },
 
 {
-"name":"window-to-south",
-"keybind": ["<Super><Alt>KP_Down","<Super><Alt>KP_2"],
-"function" : "resize_single_window",
-"parameters":[
-    ["0","h*0.5","w","h*0.5"],
-    ["0","h-h*0.3","w","h*0.3"],
-    ["0","h*0.7","w","h*0.7"]
+    "name": "window-to-south",
+    "keybind": ["<Super><Alt>KP_Down", "<Super><Alt>KP_2"],
+    "function": "resize_single_window",
+    "parameters": [
+        ["0", "h*0.5", "w", "h*0.5"],
+        ["0", "h-h*0.3", "w", "h*0.3"],
+        ["0", "h*0.7", "w", "h*0.7"]
     ]
 },
 
 {
     "name": "window-to-west",
     "description": "move window to the left part of the screen, cycle through possible geometries",
-    "keybind": ["<Ctrl><Super>h", "<Super><Alt>KP_Left","<Super><Alt>KP_4"],
+    "keybind": ["<Ctrl><Super>h", "<Super><Alt>KP_Left", "<Super><Alt>KP_4"],
     "function": "resize_single_window",
     "parameters": [
         [0, 0, "w*0.5", "h"],
@@ -110,7 +110,7 @@
 {
     "name": "window-to-east",
     "description": "move window to the right part of the screen, cycle through possible geometries",
-    "keybind": ["<Ctrl><Super>k", "<Super><Alt>KP_Right","<Super><Alt>KP_6"],
+    "keybind": ["<Ctrl><Super>k", "<Super><Alt>KP_Right", "<Super><Alt>KP_6"],
     "function": "resize_single_window",
     "parameters": [
         ["w*0.5", 0, "w*0.5", "h"],
@@ -121,7 +121,7 @@
 
 {
     "name": "window-to-southwest",
-    "keybind": ["<Ctrl><Super>b", "<Super><Alt>KP_End","<Super><Alt>KP_1"],
+    "keybind": ["<Ctrl><Super>b", "<Super><Alt>KP_End", "<Super><Alt>KP_1"],
     "function": "resize_single_window",
     "parameters": [
         [0, "h*0.5", "w*0.5", "h*0.5"],
@@ -134,7 +134,7 @@
 
 {
     "name": "window-to-southeast",
-    "keybind": ["<Ctrl><Super>n", "<Super><Alt>KP_Page_Down","<Super><Alt>KP_3"],
+    "keybind": ["<Ctrl><Super>n", "<Super><Alt>KP_Page_Down", "<Super><Alt>KP_3"],
     "function": "resize_single_window",
     "parameters": [
         ["0.5*w", "h*0.5", "w*0.5", "h*0.5"],
@@ -146,7 +146,7 @@
 
 {
     "name": "window-to-northwest",
-    "keybind": ["<Ctrl><Super>y", "<Super><Alt>KP_Home","<Super><Alt>KP_7"],
+    "keybind": ["<Ctrl><Super>y", "<Super><Alt>KP_Home", "<Super><Alt>KP_7"],
     "function": "resize_single_window",
     "parameters": [
         [0, 0, "w*0.5", "h*0.5"],
