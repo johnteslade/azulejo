@@ -74,16 +74,8 @@ class ArrangeBase:
         """ Function to create all possible window positions 
         
         currently separate while multi-monitor is being added """
-
-        all_positions = []
-
-        for position in positions:
-            all_positions.append(
-                self.create_geometry(position, monitor)
-            )
-
-        return all_positions
-
+        
+        return [ self.create_geometry(position, monitor) for position in positions ] 
 
 
 
