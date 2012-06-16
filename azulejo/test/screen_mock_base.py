@@ -1,4 +1,3 @@
-import gtk
 
 
 class ScreenMockBase:
@@ -18,17 +17,12 @@ class ScreenMockBase:
 
     
     def get_monitor_geometry(self, monitor=None):
-        """ Returns a rectangle with geometry of the specified monitor """
+        """ Returns a rectangle with geometry of the specified monitor - if no monitor uses one with active window """
 
         if monitor == None:
-            return gtk.gdk.Rectangle(
-                x=0, 
-                y=0, 
-                width=max([ monitor.x + monitor.width for monitor in self.monitor_geometry]), 
-                height=max([ monitor.y + monitor.height for monitor in self.monitor_geometry]), 
-            )
-        else:
-            return self.monitor_geometry[monitor]
+            monitor = self.get_active_window_monitor()
+        
+        return self.monitor_geometry[monitor]
 
 
     def get_active_window(self):
@@ -59,12 +53,6 @@ class ScreenMockBase:
         """ Returns the geometry of the current active window """
 
         return self.get_active_window()['geometry']
-
-
-    def get_active_window_monitor_geometry(self):
-        """ Returns the geometry of the monitor containing the active window """
-
-        return self.get_monitor_geometry(self.get_active_window_monitor())
 
 
     def move_active_window(self, new_geometry):

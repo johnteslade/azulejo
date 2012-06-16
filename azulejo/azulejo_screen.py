@@ -37,13 +37,13 @@ class AzulejoScreen:
 
     
     def get_monitor_geometry(self, monitor=None):
-        """ Returns a rectangle with geometry of the specified monitor """
+        """ Returns a rectangle with geometry of the specified monitor - if no monitor uses one with active window """
 
-        if monitor != None:
-            return gtk.gdk.screen_get_default().get_monitor_geometry(monitor)
-        else:
-            root_window_coords = gtk.gdk.screen_get_default().get_root_window().property_get('_NET_WORKAREA')[2][:4]
-            return gtk.gdk.Rectangle(x=root_window_coords[0], y=root_window_coords[1], width=root_window_coords[2], height=root_window_coords[3])     
+        if monitor == None:
+            monitor = self.get_active_window_monitor()
+
+        return gtk.gdk.screen_get_default().get_monitor_geometry(monitor)
+
 
     def get_active_window(self):
         """ Returns the active window """
@@ -57,12 +57,6 @@ class AzulejoScreen:
         # Find the active window x, y corrdinates then find out which monitor this is
         active_window_geo = self.get_active_window_geometry() 
         return gtk.gdk.screen_get_default().get_monitor_at_point(active_window_geo[0], active_window_geo[1]) 
-
-
-    def get_active_window_monitor_geometry(self):
-        """ Returns the geometry of the monitor containing the active window """
-
-        return self.get_monitor_geometry(self.get_active_window_monitor())
 
 
     def get_active_window_geometry(self):
