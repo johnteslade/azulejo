@@ -36,6 +36,7 @@ class ArrangeSingleWindow(ArrangeBase):
             i += 1 
 
         # Now move the window
+        logging.debug("Moving window to {}".format(geometries_numeric[geometry_to_use_index]))
         self._screen.move_active_window(geometries_numeric[geometry_to_use_index])
 
 
