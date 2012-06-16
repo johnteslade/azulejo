@@ -27,16 +27,10 @@ class ArrangeBase:
         raise NotImplementedError
 
 
-    def parse_simple_math_expressions(self, expression, width=None, height=None):
+    def parse_simple_math_expressions(self, expression, width, height):
         """ Parses the string expression and evaluates it """
         
         expression = str(expression)
-        
-        if width == None:
-            width = self._screen.get_width() 
-            
-        if height == None:
-            height = self._screen.get_height() 
             
         expression = expression.replace('w', str(width))
         expression = expression.replace('h', str(height))
@@ -44,18 +38,9 @@ class ArrangeBase:
         return int(eval(expression))
 
     
-    def parse_geometry(self, geometry):
-        return map(self.parse_simple_math_expressions, geometry)
-
-
-
-    def parse_arrangement(self, arrangement):
-        return map(self.parse_geometry, arrangement)
-
-    
     def create_geometry(self, geometry_in, monitor):
         """ Creates the geometry for the config input """
-      
+     
         monitor_geometry = self._screen.get_monitor_geometry(monitor) 
 
         # Parse the string values coming in
@@ -70,10 +55,8 @@ class ArrangeBase:
         return geometry_out
 
 
-    def single_window_positions(self, positions, monitor):
-        """ Function to create all possible window positions 
-        
-        currently separate while multi-monitor is being added """
+    def get_possible_positions(self, positions, monitor=None):
+        """ Function to create all possible window positions  """
         
         return [ self.create_geometry(position, monitor) for position in positions ] 
 

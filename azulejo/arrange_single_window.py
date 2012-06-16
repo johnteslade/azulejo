@@ -23,8 +23,8 @@ class ArrangeSingleWindow(ArrangeBase):
         current_monitor = self._screen.get_active_window_monitor()
         logging.debug("Window currently on monitor {}".format(current_monitor))
 
-        #not an arrangement, but a list of geometires for that matter
-        geometries_numeric = self.single_window_positions(geometries, current_monitor)
+        #not an arrangement, but a list of geometries for that matter
+        geometries_numeric = self.get_possible_positions(geometries, current_monitor)
        
         # Calculate which geometry is the next one to use
         i = 1
