@@ -43,8 +43,7 @@ class AzulejoScreen:
             return gtk.gdk.screen_get_default().get_monitor_geometry(monitor)
         else:
             root_window_coords = gtk.gdk.screen_get_default().get_root_window().property_get('_NET_WORKAREA')[2][:4]
-            return gtk.gdk.Rectangle(x=
-            root_window_coords[0], y=root_window_coords[1], width=root_window_coords[2], height=root_window_coords[3])     
+            return gtk.gdk.Rectangle(x=root_window_coords[0], y=root_window_coords[1], width=root_window_coords[2], height=root_window_coords[3])     
 
     def get_active_window(self):
         """ Returns the active window """
