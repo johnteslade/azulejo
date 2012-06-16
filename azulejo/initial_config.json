@@ -43,7 +43,7 @@
 {
     "name": "window-to-monitor-left",
     "description": "move window to monitor to left",
-    "keybind": ["<Ctrl><Super>q"],
+    "keybind": ["<Ctrl><Super>q", "<Super><Ctrl>KP_Left","<Super><Ctrl>KP_4"],
     "function": "move_monitor",
     "parameters": ["left", ""]
 },
@@ -51,7 +51,7 @@
 {
     "name": "window-to-monitor-right",
     "description": "move window to monitor to right",
-    "keybind": ["<Ctrl><Super>w"],
+    "keybind": ["<Ctrl><Super>w", "<Super><Ctrl>KP_Right","<Super><Ctrl>KP_6"],
     "function": "move_monitor",
     "parameters": ["right", ""]
 },
@@ -59,7 +59,7 @@
 {
     "name": "window-to-monitor-left-and-max",
     "description": "move window to monitor to left and maximise",
-    "keybind": ["<Ctrl><Super>a"],
+    "keybind": ["<Ctrl><Super>a", "<Super><Ctrl>KP_Home","<Super><Ctrl>KP_7"],
     "function": "move_monitor",
     "parameters": ["left", "max"]
 },
@@ -67,7 +67,7 @@
 {
     "name": "window-to-monitor-right-and-max",
     "description": "move window to monitor to right and maximise",
-    "keybind": ["<Ctrl><Super>s"],
+    "keybind": ["<Ctrl><Super>s", "<Super><Ctrl>KP_Page_Up", "<Super><Ctrl>KP_9"],
     "function": "move_monitor",
     "parameters": ["right", "max"]
 },
