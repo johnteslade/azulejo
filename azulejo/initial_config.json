@@ -73,9 +73,9 @@
 },
 
 {
-    "name": "window-to-the-left-side",
+    "name": "window-to-west",
     "description": "move window to the left part of the screen, cycle through possible geometries",
-    "keybind": ["<Ctrl><Super>h"],
+    "keybind": ["<Ctrl><Super>h", "<Super><Alt>KP_Left","<Super><Alt>KP_4"],
     "function": "resize_single_window",
     "parameters": [
         [0, 0, "w*0.5", "h"],
@@ -85,9 +85,9 @@
 },
 
 {
-    "name": "window-to-the-right-side",
+    "name": "window-to-east",
     "description": "move window to the right part of the screen, cycle through possible geometries",
-    "keybind": ["<Ctrl><Super>k"],
+    "keybind": ["<Ctrl><Super>k", "<Super><Alt>KP_Right","<Super><Alt>KP_6"],
     "function": "resize_single_window",
     "parameters": [
         ["w*0.5", 0, "w*0.5", "h"],
@@ -98,7 +98,7 @@
 
 {
     "name": "window-to-southwest",
-    "keybind": ["<Ctrl><Super>b"],
+    "keybind": ["<Ctrl><Super>b", "<Super><Alt>KP_End","<Super><Alt>KP_1"],
     "function": "resize_single_window",
     "parameters": [
         [0, "h*0.5", "w*0.5", "h*0.5"],
@@ -111,7 +111,7 @@
 
 {
     "name": "window-to-southeast",
-    "keybind": ["<Ctrl><Super>n"],
+    "keybind": ["<Ctrl><Super>n", "<Super><Alt>KP_Page_Down","<Super><Alt>KP_3"],
     "function": "resize_single_window",
     "parameters": [
         ["0.5*w", "h*0.5", "w*0.5", "h*0.5"],
@@ -123,7 +123,7 @@
 
 {
     "name": "window-to-northwest",
-    "keybind": ["<Ctrl><Super>y"],
+    "keybind": ["<Ctrl><Super>y", "<Super><Alt>KP_Home","<Super><Alt>KP_7"],
     "function": "resize_single_window",
     "parameters": [
         [0, 0, "w*0.5", "h*0.5"],
@@ -135,7 +135,7 @@
 
 {
     "name": "window-to-northeast",
-    "keybind": ["<Ctrl><Super>u"],
+    "keybind": ["<Ctrl><Super>u", "<Super><Alt>KP_Page_Up", "<Super><Alt>KP_9"],
     "function": "resize_single_window",
     "parameters": [
         ["w*0.5", 0, "w*0.5", "h*0.5"],
