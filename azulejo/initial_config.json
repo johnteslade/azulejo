@@ -2,7 +2,7 @@
 
 {
     "name": "maximize",
-    "keybind": ["<Ctrl><Super>1"],
+    "keybind": ["<Ctrl><Super>1", "<Super><Alt>KP_Begin", "<Super><Alt>KP_5"],
     "function": "maximize",
     "parameters": []
 },
