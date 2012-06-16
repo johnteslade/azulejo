@@ -23,12 +23,6 @@ class AzulejoController:
         else:
             self._screen = AzulejoScreen()
 
-        #because window resizing is not acurate we need a quick dirty workaround
-        self.window_geometry_error_margin = 30
-
-        #variable to hold the amount of windows since the last arrangement
-        self.arrangement_size = 0
-
         self._action_classes = {
             'maximize': ArrangeMaximize(self._screen),     
             'move_monitor': ArrangeMoveMonitor(self._screen),       
