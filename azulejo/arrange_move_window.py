@@ -17,14 +17,16 @@ class ArrangeMoveWindow(ArrangeBase):
 
         logging.debug("Original window {}".format(window_original_geometry))
 
-        window_width = window_original_geometry[2]
-        window_height = window_original_geometry[3]
-        screen_width = current_monitor_geometry[2]
-        screen_height = current_monitor_geometry[3]
-        
+        subst_vars = {
+            'window_width': window_original_geometry[2],
+            'window_height': window_original_geometry[3],
+            'screen_width': current_monitor_geometry[2],
+            'screen_height': current_monitor_geometry[3],
+        }
+
         new_geometry = [
-            current_monitor_geometry[0] + eval(geometries[0]), 
-            current_monitor_geometry[1] + eval(geometries[1]),
+            current_monitor_geometry[0] + self.parse_simple_math_expressions(geometries[0], subst_vars), 
+            current_monitor_geometry[1] + self.parse_simple_math_expressions(geometries[1], subst_vars),
             window_original_geometry[2],
             window_original_geometry[3]
         ]

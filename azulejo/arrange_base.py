@@ -27,13 +27,13 @@ class ArrangeBase:
         raise NotImplementedError
 
 
-    def parse_simple_math_expressions(self, expression, width, height):
+    def parse_simple_math_expressions(self, expression, subst_vars):
         """ Parses the string expression and evaluates it """
         
         expression = str(expression)
             
-        expression = expression.replace('w', str(width))
-        expression = expression.replace('h', str(height))
+        for subst in subst_vars.keys():            
+            expression = expression.replace(subst, str(subst_vars[subst]))
 
         return int(eval(expression))
 
@@ -44,7 +44,7 @@ class ArrangeBase:
         monitor_geometry = self._screen.get_monitor_geometry(monitor) 
 
         # Parse the string values coming in
-        geometry_out = [ self.parse_simple_math_expressions(coord, monitor_geometry.width, monitor_geometry.height) for coord in geometry_in ]
+        geometry_out = [ self.parse_simple_math_expressions(coord, { 'w': monitor_geometry.width, 'h': monitor_geometry.height} ) for coord in geometry_in ]
 
         # Modify the geometry to account for the x and y of the monitor
         geometry_out[0] += monitor_geometry.x
