@@ -291,7 +291,47 @@ class AzulejoTestMultiple(AzulejoTestBase):
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
             [380, 70, 20, 30]
-        )    
+        )   
+
+
+    def test_multiple_window_moves_multi_monitor(self):
+        """ Tests multiple window moves from multiple monitors """  
+        
+        # Move side by side
+        self.keybinding_obj.action_key('<Ctrl><Super>2')
+
+        self.assertEqual(
+            self.screen.get_all_windows()[0]['geometry'],
+            [200, 0, 100, 100]
+        )
+
+        self.assertEqual(
+            self.screen.get_all_windows()[1]['geometry'],
+            [301, 0, 100, 100]
+        )
+
+        # Move 4 pain
+        self.keybinding_obj.action_key('<Ctrl><Super>4')
+
+        self.assertEqual(
+            self.screen.get_all_windows()[0]['geometry'],
+            [200, 0, 100, 50]
+        )
+
+        self.assertEqual(
+            self.screen.get_all_windows()[1]['geometry'],
+            [301, 0, 100, 50]
+        ) 
+
+        self.assertEqual(
+            self.screen.get_all_windows()[2]['geometry'],
+            [200, 51, 100, 50]
+        )
+
+        self.assertEqual(
+            self.screen.get_all_windows()[3]['geometry'],
+            [301, 51, 100, 50]
+        ) 
 
 
 if __name__ == '__main__':
