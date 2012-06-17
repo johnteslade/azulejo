@@ -15,9 +15,6 @@ class ArrangeBase:
 
         self._screen = screen_in # Main screen object
 
-        #because window resizing is not acurate we need a quick dirty workaround
-        self.window_geometry_error_margin = 30
-
         #variable to hold the amount of windows since the last arrangement
         self.arrangement_size = 0
 
