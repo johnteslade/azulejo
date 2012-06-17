@@ -1,6 +1,7 @@
 import wnck
 import gtk
 import logging
+from geometry import Geometry
 
 
 class AzulejoScreen:
@@ -55,13 +56,14 @@ class AzulejoScreen:
 
         # Find the active window x, y corrdinates then find out which monitor this is
         active_window_geo = self.get_active_window_geometry() 
-        return gtk.gdk.screen_get_default().get_monitor_at_point(active_window_geo[0], active_window_geo[1]) 
+        return gtk.gdk.screen_get_default().get_monitor_at_point(active_window_geo.x, active_window_geo.y) 
 
 
     def get_active_window_geometry(self):
         """ Returns the geometry of the current active window """
 
-        return self.get_active_window().get_geometry()
+        geometry = self.get_active_window().get_geometry() 
+        return Geometry(x=geometry[0], y=geometry[1], width=geometry[2], height=geometry[3]) 
 
 
     def move_active_window(self, new_geometry):
@@ -83,7 +85,7 @@ class AzulejoScreen:
     def move_window(self, window, new_geometry):
         """ Moves the window to the specified geometry """
         
-        geometry_list_args = [0, 255] + new_geometry.as_list()
+        geometry_list_args = [0, 255] + [ new_geometry.x, new_geometry.y, new_geometry.width, new_geometry.height ]
         window.unmaximize()
         window.set_geometry(*geometry_list_args)
 
