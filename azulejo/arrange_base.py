@@ -47,12 +47,14 @@ class ArrangeBase:
         # Parse the string values coming in
         geometry_out_list = [ self.parse_simple_math_expressions(coord, { 'w': monitor_geometry.width, 'h': monitor_geometry.height} ) for coord in geometry_in ]
 
-        # Modify the geometry to account for the x and y of the monitor
-        geometry_out_list[0] += monitor_geometry.x
-        geometry_out_list[1] += monitor_geometry.y
+        # Create final geometry (account for the x and y of the monitor)
+        geometry_out = Geometry(
+            x=geometry_out_list[0] + monitor_geometry.x,
+            y=geometry_out_list[1] + monitor_geometry.y,
+            width=geometry_out_list[2],
+            height=geometry_out_list[3]
+        )
 
-        geometry_out = Geometry(geometry_out_list)   
-     
         logging.debug("Possible geometry = {}".format(geometry_out))
 
         return geometry_out

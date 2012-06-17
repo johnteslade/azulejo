@@ -3,19 +3,12 @@
 class Geometry:
     """ A class to hold the geometry of a window or screen """
 
-    def __init__(self, list_form=None, x=None, y=None, width=None, height=None):
+    def __init__(self, x=None, y=None, width=None, height=None):
        
-        if list_form:
-            # TODO get rid of this
-            self.x = list_form[0]
-            self.y = list_form[1]
-            self.width = list_form[2]
-            self.height = list_form[3]
-        else:
-            self.x = x
-            self.y = y
-            self.width = width
-            self.height = height
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
 
     def _as_list(self):
         """ Returns the class a list [x, y, width, height] """
