@@ -11,12 +11,6 @@ class ArrangeSingleWindow(ArrangeBase):
 
     def do(self, geometries):
         """ Main function that performs the arrangement """
-
-        def similar_geometries(ga, gb):
-            for i in range(4):
-                if abs(ga[i] - gb[i]) >= self.window_geometry_error_margin:
-                    return False
-            return True
      
         window_original_geometry = self._screen.get_active_window_geometry()
 
@@ -30,7 +24,7 @@ class ArrangeSingleWindow(ArrangeBase):
         i = 1
         geometry_to_use_index = 0    
         for geometry_numeric in geometries_numeric:
-            if similar_geometries(geometry_numeric, window_original_geometry):
+            if geometry_numeric.is_similar(window_original_geometry):
                 geometry_to_use_index = i % len(geometries_numeric)
                 break
             i += 1 

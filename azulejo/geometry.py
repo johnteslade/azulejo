@@ -17,29 +17,29 @@ class Geometry:
             self.width = width
             self.height = height
 
-    def as_list(self):
+    def _as_list(self):
         """ Returns the class a list [x, y, width, height] """
+        
         return [ self.x, self.y, self.width, self.height ]
 
 
-    def __getitem__(self, key):
+    def is_similar(self, rhs, error_margin=30):
+        """ Compare if objects are similar within the given error margin """
+       
+        # TODO there might be a neater way to do this
 
-        #raise DeprecationWarning
+        ga = self._as_list()
+        gb = rhs._as_list()
 
-        # TODO get rid of this eventually
-
-        return self.as_list()[key]
-        
-
-    def is_similar(self):
-        
-        # TODO move ArrangeSingleWindow.similar_geometries and window_geometry_error_margin code here
-        
-        raise NotImplementedError
+        for i in range(4):
+            if abs(ga[i] - gb[i]) >= error_margin:
+                return False
+        return True
 
 
     def __cmp__(self, rhs):
-        
+        """ Comparison of object using vals """
+
         if (rhs.x == self.x) and (rhs.y == self.y) and (rhs.width == self.width) and (rhs.height == self.height): 
             return 0
         else:

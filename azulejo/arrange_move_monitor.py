@@ -43,10 +43,10 @@ class ArrangeMoveMonitor(ArrangeBase):
 
             # TODO deal with if the window is now too large for the new monitor
             new_position = Geometry(
-                x=new_monitor_geometry.x + (window_original_geometry[0] - old_monitor_geometry.x),
-                y=new_monitor_geometry.y + (window_original_geometry[1] - old_monitor_geometry.y),
-                width=window_original_geometry[2], 
-                height=window_original_geometry[3], 
+                x=new_monitor_geometry.x + (window_original_geometry.x - old_monitor_geometry.x),
+                y=new_monitor_geometry.y + (window_original_geometry.y - old_monitor_geometry.y),
+                width=window_original_geometry.width, 
+                height=window_original_geometry.height, 
             )
             
             logging.debug("Moving to monitor {} and geometry {}".format(new_monitor, new_position))
