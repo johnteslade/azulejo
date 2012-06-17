@@ -83,7 +83,7 @@ class AzulejoScreen:
     def move_window(self, window, new_geometry):
         """ Moves the window to the specified geometry """
         
-        geometry_list_args = [0, 255] + new_geometry
+        geometry_list_args = [0, 255] + new_geometry.as_list()
         window.unmaximize()
         window.set_geometry(*geometry_list_args)
 

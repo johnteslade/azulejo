@@ -3,6 +3,7 @@ import time
 import logging
 
 from azulejo_screen import AzulejoScreen
+from geometry import Geometry
 
 
 
@@ -44,12 +45,14 @@ class ArrangeBase:
         monitor_geometry = self._screen.get_monitor_geometry(monitor) 
 
         # Parse the string values coming in
-        geometry_out = [ self.parse_simple_math_expressions(coord, { 'w': monitor_geometry.width, 'h': monitor_geometry.height} ) for coord in geometry_in ]
+        geometry_out_list = [ self.parse_simple_math_expressions(coord, { 'w': monitor_geometry.width, 'h': monitor_geometry.height} ) for coord in geometry_in ]
 
         # Modify the geometry to account for the x and y of the monitor
-        geometry_out[0] += monitor_geometry.x
-        geometry_out[1] += monitor_geometry.y
-        
+        geometry_out_list[0] += monitor_geometry.x
+        geometry_out_list[1] += monitor_geometry.y
+
+        geometry_out = Geometry(geometry_out_list)   
+     
         logging.debug("Possible geometry = {}".format(geometry_out))
 
         return geometry_out

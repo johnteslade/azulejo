@@ -9,6 +9,7 @@ import azulejo
 from test.screen_mocks import SingleTestScreenMock
 from test.screen_mocks import MultipleTestScreenMock
 from test.key_binder import KeyBinderDummy
+from geometry import Geometry
 
 
 class AzulejoTestBase(unittest.TestCase):
@@ -41,7 +42,7 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [0, 0, 1000, 1000]
+            Geometry(x=0, y=0, width=1000, height=1000)
         )
         
         # Trigger another keypress
@@ -49,7 +50,7 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [0, 0, 600, 1000]
+            Geometry(x=0, y=0, width=600, height=1000)
         )
         
         # Trigger another keypress
@@ -57,7 +58,7 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [0, 0, 1400, 1000]
+            Geometry(x=0, y=0, width=1400, height=1000)
         )
 
 
@@ -69,7 +70,7 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [0, 0, 2000, 1000]
+            Geometry(x=0, y=0, width=2000, height=1000)
         )
         
 
@@ -81,12 +82,12 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.windows[0]['geometry'],
-            [0, 0, 1000, 1000]
+            Geometry(x=0, y=0, width=1000, height=1000)
         )
 
         self.assertEqual(
             self.screen.windows[1]['geometry'],
-            [1001, 0, 1000, 1000]
+            Geometry(x=1001, y=0, width=1000, height=1000)
         )
 
 
@@ -98,17 +99,17 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.windows[0]['geometry'],
-            [0, 0, 1000, 1000]
+            Geometry(x=0, y=0, width=1000, height=1000)
         )
 
         self.assertEqual(
             self.screen.windows[1]['geometry'],
-            [1001, 0, 1000, 500]
+            Geometry(x=1001, y=0, width=1000, height=500)
         )
 
         self.assertEqual(
             self.screen.windows[2]['geometry'],
-            [1001, 501, 1000, 500]
+            Geometry(x=1001, y=501, width=1000, height=500)
         )
       
 
@@ -120,22 +121,22 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.windows[0]['geometry'],
-            [0, 0, 1000, 500]
+            Geometry(x=0, y=0, width=1000, height=500)
         )
 
         self.assertEqual(
             self.screen.windows[1]['geometry'],
-            [1001, 0, 1000, 500]
+            Geometry(x=1001, y=0, width=1000, height=500)
         )
 
         self.assertEqual(
             self.screen.windows[2]['geometry'],
-            [0, 501, 1000, 500]
+            Geometry(x=0, y=501, width=1000, height=500)
         )
 
         self.assertEqual(
             self.screen.windows[3]['geometry'],
-            [1001, 501, 1000, 500]
+            Geometry(x=1001, y=501, width=1000, height=500)
         )
 
 
@@ -147,7 +148,7 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [0, 0, 50, 100]
+            Geometry(x=0, y=0, width=50, height=100)
         )
         
         # Move southeast
@@ -155,7 +156,7 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [1950, 900, 50, 100]
+            Geometry(x=1950, y=900, width=50, height=100)
         )   
 
     def test_multiple_window_moves(self):
@@ -166,12 +167,12 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_all_windows()[0]['geometry'],
-            [0, 0, 1000, 1000]
+            Geometry(x=0, y=0, width=1000, height=1000)
         )
 
         self.assertEqual(
             self.screen.get_all_windows()[1]['geometry'],
-            [1001, 0, 1000, 1000]
+            Geometry(x=1001, y=0, width=1000, height=1000)
         )
 
         # Move 4 pain
@@ -179,22 +180,22 @@ class AzulejoTestSingle(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_all_windows()[0]['geometry'],
-            [0, 0, 1000, 500]
+            Geometry(x=0, y=0, width=1000, height=500)
         )
 
         self.assertEqual(
             self.screen.get_all_windows()[1]['geometry'],
-            [1001, 0, 1000, 500]
+            Geometry(x=1001, y=0, width=1000, height=500)
         ) 
 
         self.assertEqual(
             self.screen.get_all_windows()[2]['geometry'],
-            [0, 501, 1000, 500]
+            Geometry(x=0, y=501, width=1000, height=500)
         )
 
         self.assertEqual(
             self.screen.get_all_windows()[3]['geometry'],
-            [1001, 501, 1000, 500]
+            Geometry(x=1001, y=501, width=1000, height=500)
         ) 
 
 
@@ -218,7 +219,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [200, 0, 100, 100]
+            Geometry(x=200, y=0, width=100, height=100)
         )
 
 
@@ -232,7 +233,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [50, 10, 20, 30]
+            Geometry(x=50, y=10, width=20, height=30)
         )
         
         self.assertEqual(self.screen.get_active_window_monitor(), 0)
@@ -242,7 +243,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [250, 10, 20, 30]
+            Geometry(x=250, y=10, width=20, height=30)
         )
         
         self.assertEqual(self.screen.get_active_window_monitor(), 1)
@@ -258,7 +259,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [0, 0, 200, 100]
+            Geometry(x=0, y=0, width=200, height=100)
         )
        
         self.assertEqual(self.screen.get_active_window_monitor(), 0)
@@ -268,7 +269,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
         
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [200, 0, 200, 100]
+            Geometry(x=200, y=0, width=200, height=100)
         )
         
         self.assertEqual(self.screen.get_active_window_monitor(), 1)
@@ -282,7 +283,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [200, 0, 20, 30]
+            Geometry(x=200, y=0, width=20, height=30)
         )
         
         # Move southeast
@@ -290,7 +291,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
-            [380, 70, 20, 30]
+            Geometry(x=380, y=70, width=20, height=30)
         )   
 
 
@@ -302,12 +303,12 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_all_windows()[0]['geometry'],
-            [200, 0, 100, 100]
+            Geometry(x=200, y=0, width=100, height=100)
         )
 
         self.assertEqual(
             self.screen.get_all_windows()[1]['geometry'],
-            [301, 0, 100, 100]
+            Geometry(x=301, y=0, width=100, height=100)
         )
 
         # Move 4 pain
@@ -315,22 +316,22 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
         self.assertEqual(
             self.screen.get_all_windows()[0]['geometry'],
-            [200, 0, 100, 50]
+            Geometry(x=200, y=0, width=100, height=50)
         )
 
         self.assertEqual(
             self.screen.get_all_windows()[1]['geometry'],
-            [301, 0, 100, 50]
+            Geometry(x=301, y=0, width=100, height=50)
         ) 
 
         self.assertEqual(
             self.screen.get_all_windows()[2]['geometry'],
-            [200, 51, 100, 50]
+            Geometry(x=200, y=51, width=100, height=50)
         )
 
         self.assertEqual(
             self.screen.get_all_windows()[3]['geometry'],
-            [301, 51, 100, 50]
+            Geometry(x=301, y=51, width=100, height=50)
         ) 
 
 

@@ -42,7 +42,7 @@ class ScreenMockBase:
             monitor = self.monitor_geometry[x]
             window = self.get_active_window()['geometry']
 
-            if (window[0] >= monitor.x) and (window[0] < monitor.x + monitor.width) and (window[1] >= monitor.y) and (window[1] < monitor.y + monitor.height):
+            if (window.x >= monitor.x) and (window.x < monitor.x + monitor.width) and (window.y >= monitor.y) and (window.y < monitor.y + monitor.height):
                 return x
        
         # If we get here then we have a mismatch between windows and monitors
@@ -75,7 +75,7 @@ class ScreenMockBase:
         """ Maximises the active window """ 
 
         monitor_size = self.get_monitor_geometry(self.get_active_window_monitor())
-        self.move_active_window([monitor_size.x, monitor_size.y, monitor_size.width, monitor_size.height])
+        self.move_active_window(monitor_size)
 
     
     def get_number_monitors(self):
