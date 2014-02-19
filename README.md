@@ -1,8 +1,8 @@
 # Azulejo
 
-This is a fork of https://github.com/plainas/azulejo (although the original source came via https://bitbucket.org/plainas/azulejo)
+This is a fork of https://github.com/plainas/azulejo (although the original source came via https://bitbucket.org/plainas/azulejo).
 
-Azulejo is a port (an attempt to) of [winsplit revolution](http://www.winsplit-revolution.com/)'s functionality to *nix desktop environments.
+Azulejo is a port (an attempt to) of [winsplit revolution](http://www.winsplit-revolution.com/)'s functionality to Unix desktop environments.
 Simply put, it resizes and moves windows using keyboard shortcuts.
 
 It has been tested on gnome2, xfce and openbox, but it should work on many others
@@ -17,9 +17,9 @@ This is where azulejo comes in, it adds some tilling features but leaves your wi
 
 ## Installation
 
-If you use Debian, Ubuntu, or any other debian based operative system, the recomended way is simply downloading and installing the deb package. Check out the [downloads page](https://bitbucket.org/plainas/azulejo/downloads).
+Clone the repository and run 
 
-Alternatively, you can install it using distutils or simply run the ''run.py'' file present on the project's root dir.
+	python run.py
 
 ## Usage
 
@@ -39,11 +39,15 @@ The following is the default keymap:
 	
 ## Configuration
 
-Azulejo configurations are stored on ''~/.azulejo.json''.
-TODO: add/explain example
+Azulejo configurations are stored at `~/.azulejo.json`.
 
-## Author
+## Authors
 
-Pedro   
-[http://lamhacks.net](http://lamehacks.net)   
-email: pedro at lamehacks d0t net
+Original author: Pedro (http://lamehacks.net)   
+
+Changes by John Slade (http://jtes.net):
+- Significant refactor of code
+- Addition of test cases
+- Support for multi-monitor setups
+
+
