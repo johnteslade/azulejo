@@ -1,4 +1,3 @@
-import gtk
 import configuration
 import logging
 
@@ -42,6 +41,7 @@ def run(test=False, screen_obj=None, keybinder_obj=None):
 
     # Main loop for gtk
     if not test:
+        import gtk
         gtk.main()
 
 
