@@ -1,5 +1,4 @@
 import gtk
-import keybinder
 import configuration
 import logging
 
@@ -22,6 +21,7 @@ def run(test=False, screen_obj=None, keybinder_obj=None):
     logging.basicConfig(level=logging.DEBUG)
 
     if keybinder_obj == None:
+        import keybinder
         keybinder_obj = keybinder
 
     for action in AzulejoConfiguration(test).get_config_data():

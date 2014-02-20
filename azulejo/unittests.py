@@ -1,9 +1,7 @@
 import logging
 import unittest
 from mock import patch
-import keybinder
 import azulejo_screen
-import gtk
 import azulejo
 
 from test.screen_mocks import SingleTestScreenMock
