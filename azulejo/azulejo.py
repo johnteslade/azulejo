@@ -25,7 +25,10 @@ def run(test=False, screen_obj=None, keybinder_obj=None):
         keybinder_obj = keybinder
 
     for action in AzulejoConfiguration(test).get_config_data():
+       
         
+        logging.info("Binding action {} to keys {}".format(action['name'], action['keybind']))
+
         for key in action['keybind']:
             keybinder_obj.bind(
                 key, 
