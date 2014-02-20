@@ -8,7 +8,6 @@ from arrange_move_window import ArrangeMoveWindow
 from arrange_multiple_windows import ArrangeMultipleWindows
 from arrange_rotate import ArrangeRotate
 from arrange_single_window import ArrangeSingleWindow
-from azulejo_screen import AzulejoScreen
 
 
 
@@ -21,6 +20,7 @@ class AzulejoController:
         if screen_obj_in:
             self._screen = screen_obj_in
         else:
+            from azulejo_screen import AzulejoScreen
             self._screen = AzulejoScreen()
 
         self._action_classes = {

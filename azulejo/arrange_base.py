@@ -1,13 +1,8 @@
-from collections import deque
-import time
 import logging
 
-from azulejo_screen import AzulejoScreen
 from geometry import Geometry
 
-
-
-class ArrangeBase:
+class ArrangeBase(object):
     """ A base class for defining an action to arrange window(s) """    
 
     def __init__(self, screen_in):

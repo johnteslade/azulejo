@@ -1,7 +1,4 @@
-import logging
 import unittest
-from mock import patch
-import azulejo_screen
 import azulejo
 
 from test.screen_mocks import SingleTestScreenMock
