@@ -17,6 +17,12 @@ This is where azulejo comes in, it adds some tilling features but leaves your wi
 
 ## Installation
 
+There are some python library depedencies needed:
+
+For Ubuntu:
+
+	apt-get install python-wnck python-keybinder
+
 Clone the repository and run 
 
 	python run.py
@@ -24,18 +30,31 @@ Clone the repository and run
 ## Usage
 
 Azulejo doesn't have a GUI nor a CLI, simply use the keyboard shortcuts whenever you need :)
-The following is the default keymap:
 
-	Super+2		Place two windows side by side
-	Super+3		Place a window on the left half of the screen and two on the right half
-	Super+4		Arrange four windows two by two
-	Super+R		Rotate windows' positions i.e. cycle windows
-	Super+H		Resize and move current window to the left
-	Super+K		Resize and move current window to the right
-	Super+Y		Resize and move current window to left upper corner
-	Super+U		Resize and move current window to right upper corner
-	Super+B		Resize and move current window to left lower corner
-	Super+N		Resize and move current window to right lower corner
+The following is the basic default keymap - but all avaliable keymaps are printed on program start:
+
+	Ctrl+Super+2		Place two windows side by side
+	Ctrl+Super+3		Place a window on the left half of the screen and two on the right half
+	Ctrl+Super+4		Arrange four windows two by two
+	Ctrl+Super+R		Rotate windows' positions i.e. cycle windows
+	
+	Alt+Super+KP4		Resize and move current window to the left
+	Alt+Super+KP6		Resize and move current window to the right
+	Alt+Super+KP8		Resize and move current window to the top
+	Alt+Super+KP2		Resize and move current window to the bottom
+	
+	Alt+Super+KP7		Resize and move current window to left upper corner
+	Alt+Super+KP9		Resize and move current window to right upper corner
+	Alt+Super+KP1		Resize and move current window to left lower corner
+	Alt+Super+KP3		Resize and move current window to right lower corner
+	
+	Alt+Super+KP5		Maximise window
+	
+	Ctrl+Super+q		Move window to monitor on left
+	Ctrl+Super+w		Move window to monitor on right
+	
+	Ctrl+Super+a		Move window to monitor on left and maximise
+	Ctrl+Super+s		Move window to monitor on right and maximise
 	
 ## Configuration
 
@@ -49,5 +68,3 @@ Changes by John Slade (http://jtes.net):
 - Significant refactor of code
 - Addition of test cases
 - Support for multi-monitor setups
-
-
