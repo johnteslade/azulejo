@@ -19,6 +19,10 @@ This is where azulejo comes in, it adds some tilling features but leaves your wi
 
 There are some python library depedencies needed:
 
+For Fedora:
+
+    yum install gnome-python2-libwnck python-keybinder
+
 For Ubuntu:
 
 	apt-get install python-wnck python-keybinder
