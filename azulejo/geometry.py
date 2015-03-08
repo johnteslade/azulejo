@@ -40,3 +40,29 @@ class Geometry(object):
             self.x, self.y, self.width, self.height)
 
 
+import nose.tools
+class TestGeometry(object):
+
+    def test_equal(self):
+        """Test equality of objects."""
+
+        a = Geometry(1, 1, 2, 2)
+        b = Geometry(1, 1, 2, 2)
+        c = Geometry(4, 4, 5, 5)
+
+        nose.tools.assert_equal(a, b)
+        nose.tools.assert_not_equal(id(a), id(b))
+        nose.tools.assert_not_equal(a, c)
+        nose.tools.assert_not_equal(b, c)
+
+    def test_similar(self):
+        """Test object similarity."""
+
+        a = Geometry(0, 0, 100, 100)
+        b = Geometry(0, 0, 80, 80)
+
+        nose.tools.assert_not_equal(a, b)
+        nose.tools.assert_true(a.is_similar(b))
+        nose.tools.assert_false(a.is_similar(b, error_margin=20))
+        nose.tools.assert_false(a.is_similar(b, error_margin=10))
+
