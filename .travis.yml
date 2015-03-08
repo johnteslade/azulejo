@@ -8,6 +8,6 @@ python:
 install:
   - pip install mock python-coveralls pytest-cov pytest-pep8
 # command to run tests
-script:  py.test -v --cov=azulejo --cov-report=term-missing azulejo/unittests.py
+script:  py.test -v --cov=azulejo --cov-report=term-missing azulejo/
 after_success:
   - coveralls
