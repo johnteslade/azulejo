@@ -4,8 +4,26 @@ from .arrange_base import ArrangeBase
 from .geometry import Geometry
 
 
+class ArrangeMonitorBase(ArrangeBase):
+    """ Class for base actions for moving between monitors """
 
-class ArrangeMoveMonitor(ArrangeBase):
+    def new_monitor(self, old_monitor, direction):
+        """Return the new monitor number."""
+
+        new_monitor = old_monitor
+
+        # Work out if we have a new monitor number
+        if direction == "left":
+            if old_monitor > 0:
+                new_monitor = old_monitor - 1
+        else:
+            if old_monitor < self._screen.get_number_monitors() - 1:
+                new_monitor = old_monitor + 1
+
+        return new_monitor
+
+
+class ArrangeMoveMonitor(ArrangeMonitorBase):
     """ Class to move a window to another monitor """
 
     def do(self, params):
@@ -24,15 +42,7 @@ class ArrangeMoveMonitor(ArrangeBase):
         logging.debug("Window currently on monitor {}.  Moving {}".format(
             old_monitor, direction))
 
-        new_monitor = old_monitor
-
-        # Work out if we have a new monitor number
-        if direction == "left":
-            if old_monitor > 0:
-                new_monitor = old_monitor - 1
-        else:
-            if old_monitor < self._screen.get_number_monitors() - 1:
-                new_monitor = old_monitor + 1
+        new_monitor = self.new_monitor(old_monitor, direction)
 
         # Do we need to move the window?
         if new_monitor != old_monitor:
