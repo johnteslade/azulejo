@@ -1,5 +1,5 @@
 from screen_mock_base import ScreenMockBase
-from geometry import Geometry
+from azulejo.geometry import Geometry
 
 
 class SingleTestScreenMock(ScreenMockBase):
