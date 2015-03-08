@@ -7,13 +7,13 @@ from .geometry import Geometry
 class ArrangeMonitorBase(ArrangeBase):
     """ Class for base actions for moving between monitors """
 
-    def new_monitor(self, old_monitor, direction):
+    def new_monitor(self, old_monitor, direction_left):
         """Return the new monitor number."""
 
         new_monitor = old_monitor
 
         # Work out if we have a new monitor number
-        if direction == "left":
+        if direction_left:
             if old_monitor > 0:
                 new_monitor = old_monitor - 1
         else:
@@ -22,32 +22,19 @@ class ArrangeMonitorBase(ArrangeBase):
 
         return new_monitor
 
-
-class ArrangeMoveMonitor(ArrangeMonitorBase):
-    """ Class to move a window to another monitor """
-
-    def do(self, params):
-        """ Main function that performs the arrangement """
-
-        direction = params[0]
-        resize = params[1]
-
-        # No action if only one monitor
-        if self._screen.get_number_monitors() == 1:
-            return
-
-        old_monitor = self._screen.get_active_window_monitor()
-        old_monitor_geometry = self._screen.get_monitor_geometry(old_monitor)
-
-        logging.debug("Window currently on monitor {}.  Moving {}".format(
-            old_monitor, direction))
-
-        new_monitor = self.new_monitor(old_monitor, direction)
+    def move_window_to_monitor(
+            self,
+            window_original_geometry,
+            old_monitor,
+            old_monitor_geometry,
+            new_monitor,
+            maximise
+        ):
+        """Move a window to a new monitor."""
 
         # Do we need to move the window?
         if new_monitor != old_monitor:
 
-            window_original_geometry = self._screen.get_active_window_geometry()
             new_monitor_geometry = \
                 self._screen.get_monitor_geometry(new_monitor)
 
@@ -68,6 +55,36 @@ class ArrangeMoveMonitor(ArrangeMonitorBase):
             self._screen.move_active_window(new_position)
 
             # Maximise the window if required
-            if resize == "max":
+            if maximise:
                 logging.debug("Maximising window")
                 self._screen.maximise_active_window()
+
+class ArrangeMoveMonitor(ArrangeMonitorBase):
+    """ Class to move a window to another monitor """
+
+    def do(self, params):
+        """ Main function that performs the arrangement """
+
+        direction = params[0]
+        resize = params[1]
+
+        # No action if only one monitor
+        if self._screen.get_number_monitors() == 1:
+            return
+
+        old_monitor = self._screen.get_active_window_monitor()
+        old_monitor_geometry = self._screen.get_monitor_geometry(old_monitor)
+
+        logging.debug("Window currently on monitor {}.  Moving {}".format(
+            old_monitor, direction))
+
+        new_monitor = self.new_monitor(old_monitor, direction == "left")
+
+        self.move_window_to_monitor(
+            self._screen.get_active_window_geometry(),
+            old_monitor,
+            old_monitor_geometry,
+            new_monitor,
+            resize == "max"
+        )
+
