@@ -1,6 +1,6 @@
 # Azulejo
 
-[![Build Status](https://travis-ci.org/johnteslade/azulejo.svg?branch=master)](https://travis-ci.org/johnteslade/azulejo)
+[![Build Status](https://travis-ci.org/johnteslade/azulejo.svg?branch=master)](https://travis-ci.org/johnteslade/azulejo) [![Coverage Status](https://coveralls.io/repos/johnteslade/azulejo/badge.svg?branch=master)](https://coveralls.io/r/johnteslade/azulejo?branch=master)
 
 This is a fork of https://github.com/plainas/azulejo (although the original source came via https://bitbucket.org/plainas/azulejo).
 
