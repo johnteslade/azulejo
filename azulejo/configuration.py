@@ -8,7 +8,7 @@
 import json
 import os.path
 
-class AzulejoConfiguration:
+class AzulejoConfiguration(object):
     """ Handles configuration of program """
 
     def __init__(self, always_use_initial=False):

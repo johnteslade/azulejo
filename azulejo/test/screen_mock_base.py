@@ -1,6 +1,6 @@
 
 
-class ScreenMockBase:
+class ScreenMockBase(object):
     """ Base mock object for the screen """
 
     monitor_geometry = []

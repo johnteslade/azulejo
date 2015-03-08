@@ -4,7 +4,7 @@ import logging
 from geometry import Geometry
 
 
-class AzulejoScreen:
+class AzulejoScreen(object):
     """
 
     Class to hold details of the current screen

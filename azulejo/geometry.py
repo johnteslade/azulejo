@@ -1,6 +1,6 @@
 
 
-class Geometry:
+class Geometry(object):
     """ A class to hold the geometry of a window or screen """
 
     def __init__(self, x=None, y=None, width=None, height=None):

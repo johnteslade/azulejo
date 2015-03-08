@@ -11,7 +11,7 @@ from arrange_single_window import ArrangeSingleWindow
 
 
 
-class AzulejoController:
+class AzulejoController(object):
 
     def __init__(self, screen_obj_in):
         """ Initialiser """
