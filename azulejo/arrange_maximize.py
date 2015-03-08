@@ -1,9 +1,4 @@
-from collections import deque
-import time
-import logging
-
 from .arrange_base import ArrangeBase
-
 
 
 class ArrangeMaximize(ArrangeBase):

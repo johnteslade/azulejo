@@ -13,14 +13,12 @@ class ArrangeBase(object):
         #variable to hold the amount of windows since the last arrangement
         self.arrangement_size = 0
 
-
     def do(self, params):
         """ Main function that performs the arrangement """
-
         raise NotImplementedError
 
-
-    def parse_simple_math_expressions(self, expression, subst_vars):
+    @staticmethod
+    def parse_simple_math_expressions(expression, subst_vars):
         """ Parses the string expression and evaluates it """
 
         expression = str(expression)
@@ -30,14 +28,18 @@ class ArrangeBase(object):
 
         return int(eval(expression))
 
-
     def create_geometry(self, geometry_in, monitor):
         """ Creates the geometry for the config input """
 
         monitor_geometry = self._screen.get_monitor_geometry(monitor)
 
         # Parse the string values coming in
-        geometry_out_list = [ self.parse_simple_math_expressions(coord, { 'w': monitor_geometry.width, 'h': monitor_geometry.height} ) for coord in geometry_in ]
+        geometry_out_list = [
+            self.parse_simple_math_expressions(
+                coord,
+                {'w': monitor_geometry.width, 'h': monitor_geometry.height}
+            )
+            for coord in geometry_in]
 
         # Create final geometry (account for the x and y of the monitor)
         geometry_out = Geometry(
@@ -51,11 +53,6 @@ class ArrangeBase(object):
 
         return geometry_out
 
-
     def get_possible_positions(self, positions, monitor=None):
         """ Function to create all possible window positions  """
-
-        return [ self.create_geometry(position, monitor) for position in positions ]
-
-
-
+        return [self.create_geometry(pos, monitor) for pos in positions]

@@ -1,5 +1,3 @@
-from collections import deque
-import time
 import logging
 
 from .arrange_base import ArrangeBase
@@ -23,7 +21,8 @@ class ArrangeMoveMonitor(ArrangeBase):
         old_monitor = self._screen.get_active_window_monitor()
         old_monitor_geometry = self._screen.get_monitor_geometry(old_monitor)
 
-        logging.debug("Window currently on monitor {}.  Moving {}".format(old_monitor, direction))
+        logging.debug("Window currently on monitor {}.  Moving {}".format(
+            old_monitor, direction))
 
         new_monitor = old_monitor
 
@@ -39,17 +38,21 @@ class ArrangeMoveMonitor(ArrangeBase):
         if new_monitor != old_monitor:
 
             window_original_geometry = self._screen.get_active_window_geometry()
-            new_monitor_geometry = self._screen.get_monitor_geometry(new_monitor)
+            new_monitor_geometry = \
+                self._screen.get_monitor_geometry(new_monitor)
 
             # TODO deal with if the window is now too large for the new monitor
             new_position = Geometry(
-                x=new_monitor_geometry.x + (window_original_geometry.x - old_monitor_geometry.x),
-                y=new_monitor_geometry.y + (window_original_geometry.y - old_monitor_geometry.y),
+                x=new_monitor_geometry.x +
+                (window_original_geometry.x - old_monitor_geometry.x),
+                y=new_monitor_geometry.y +
+                (window_original_geometry.y - old_monitor_geometry.y),
                 width=window_original_geometry.width,
                 height=window_original_geometry.height,
             )
 
-            logging.debug("Moving to monitor {} and geometry {}".format(new_monitor, new_position))
+            logging.debug("Moving to monitor {} and geometry {}".format(
+                new_monitor, new_position))
 
             # Now move the window
             self._screen.move_active_window(new_position)
@@ -58,6 +61,3 @@ class ArrangeMoveMonitor(ArrangeBase):
             if resize == "max":
                 logging.debug("Maximising window")
                 self._screen.maximise_active_window()
-
-
-

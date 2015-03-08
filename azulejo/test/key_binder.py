@@ -2,7 +2,7 @@
 
 
 class KeyBinderDummy(object):
-    """ Class this is used to allow keybindings to be caught and to be actioned """
+    """Class used to allow keybindings to be caught and to be actioned."""
 
     def __init__(self):
 

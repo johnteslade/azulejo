@@ -13,7 +13,7 @@ class Geometry(object):
     def _as_list(self):
         """ Returns the class a list [x, y, width, height] """
 
-        return [ self.x, self.y, self.width, self.height ]
+        return [self.x, self.y, self.width, self.height]
 
 
     def is_similar(self, rhs, error_margin=30):

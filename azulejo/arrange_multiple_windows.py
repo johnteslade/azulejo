@@ -1,7 +1,3 @@
-from collections import deque
-import time
-import logging
-
 from .arrange_base import ArrangeBase
 
 
@@ -11,9 +7,6 @@ class ArrangeMultipleWindows(ArrangeBase):
 
     def do(self, arrangement):
         """ Main function that performs the arrangement """
-
         self._screen.move_windows(
             self.get_possible_positions(arrangement)
         )
-
-

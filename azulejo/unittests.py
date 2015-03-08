@@ -13,10 +13,10 @@ class AzulejoTestBase(unittest.TestCase):
     """ Base setup of tests """
 
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         """ Constructor """
-        self.screen = None
-        self.keybinding_obj = None
+        cls.screen = None
+        cls.keybinding_obj = None
 
 
 class AzulejoTestSingle(AzulejoTestBase):
@@ -209,7 +209,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
 
     def test_left_side_multiple(self):
-        """ Test the left side moving of windows when multiple monitors are in place """
+        """Test the left side moving of windows with multiple monitors."""
 
         # Trigger a keypress
         self.keybinding_obj.action_key('<Ctrl><Super>h')
@@ -273,7 +273,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
 
 
     def test_move_window_multi_monitor(self):
-        """ Test the moving of a window on the self.screen when using multiple monitors"""
+        """Test moving of a window on the self.screen with multiple monitors"""
 
         # Move northwest
         self.keybinding_obj.action_key('<Super>KP_7')
@@ -292,7 +292,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
         )
 
 
-    def test_multiple_window_moves_multi_monitor(self):
+    def test_multiple_window_multi_monitor(self):
         """ Tests multiple window moves from multiple monitors """
 
         # Move side by side

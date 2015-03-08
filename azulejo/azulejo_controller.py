@@ -1,6 +1,4 @@
-from collections import deque
 import logging
-import time
 
 from .arrange_maximize import ArrangeMaximize
 from .arrange_move_monitor import ArrangeMoveMonitor
@@ -12,6 +10,7 @@ from .arrange_single_window import ArrangeSingleWindow
 
 
 class AzulejoController(object):
+    """Call correct handler class for an action."""
 
     def __init__(self, screen_obj_in):
         """ Initialiser """
@@ -20,7 +19,7 @@ class AzulejoController(object):
         if screen_obj_in:
             self._screen = screen_obj_in
         else:
-            from azulejo_screen import AzulejoScreen
+            from .azulejo_screen import AzulejoScreen
             self._screen = AzulejoScreen()
 
         self._action_classes = {
@@ -45,6 +44,3 @@ class AzulejoController(object):
         self._action_classes[function].do(params)
 
         logging.debug("--- Action done {}".format(function))
-
-
-

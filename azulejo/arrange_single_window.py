@@ -1,5 +1,3 @@
-from collections import deque
-import time
 import logging
 
 from .arrange_base import ArrangeBase
@@ -18,7 +16,8 @@ class ArrangeSingleWindow(ArrangeBase):
         logging.debug("Window currently on monitor {}".format(current_monitor))
 
         #not an arrangement, but a list of geometries for that matter
-        geometries_numeric = self.get_possible_positions(geometries, current_monitor)
+        geometries_numeric = self.get_possible_positions(
+            geometries, current_monitor)
 
         # Calculate which geometry is the next one to use
         i = 1
@@ -30,7 +29,7 @@ class ArrangeSingleWindow(ArrangeBase):
             i += 1
 
         # Now move the window
-        logging.debug("Moving window to {}".format(geometries_numeric[geometry_to_use_index]))
-        self._screen.move_active_window(geometries_numeric[geometry_to_use_index])
-
-
+        logging.debug("Moving window to {}".format(
+            geometries_numeric[geometry_to_use_index]))
+        self._screen.move_active_window(
+            geometries_numeric[geometry_to_use_index])

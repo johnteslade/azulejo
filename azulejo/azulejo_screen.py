@@ -1,7 +1,7 @@
-import wnck
 import gtk
-import logging
-from geometry import Geometry
+import wnck
+
+from .geometry import Geometry
 
 
 class AzulejoScreen(object):
@@ -18,20 +18,22 @@ class AzulejoScreen(object):
         """ Initialiser """
         pass
 
-    def get_all_windows(self):
+    @staticmethod
+    def get_all_windows():
         """Get all windows in the screen."""
 
         # Get screen - this must come before gtk loop
-        s = wnck.screen_get_default()
+        screen = wnck.screen_get_default()
 
         # Deal with pending events
         while gtk.events_pending():
             gtk.main_iteration()
 
         # Get windows list and filter for normal windows
-        windows = s.get_windows_stacked()
-        filtered_windows = [window for window in windows if
-                window.get_window_type() == wnck.WindowType.__enum_values__[0]]
+        windows = screen.get_windows_stacked()
+        filtered_windows = [
+            window for window in windows
+            if window.get_window_type() == wnck.WindowType.__enum_values__[0]]
         filtered_windows.reverse()
         return filtered_windows
 
@@ -45,7 +47,8 @@ class AzulejoScreen(object):
 
         return gtk.gdk.screen_get_default().get_monitor_geometry(monitor)
 
-    def get_active_window(self):
+    @staticmethod
+    def get_active_window():
         """ Returns the active window """
         return wnck.screen_get_default().get_active_window()
 
@@ -53,22 +56,27 @@ class AzulejoScreen(object):
     def get_active_window_monitor(self):
         """ Returns the monitor of the currently active window """
 
-        # Find the active window x, y corrdinates then find out which monitor this is
+        # Find the active window coordinates then find out which monitor this is
         active_window_geo = self.get_active_window_geometry()
-        return gtk.gdk.screen_get_default().get_monitor_at_point(active_window_geo.x, active_window_geo.y)
+        return gtk.gdk.screen_get_default().get_monitor_at_point(
+            active_window_geo.x, active_window_geo.y)
 
 
     def get_active_window_geometry(self):
         """ Returns the geometry of the current active window """
 
         geometry = self.get_active_window().get_geometry()
-        return Geometry(x=geometry[0], y=geometry[1], width=geometry[2], height=geometry[3])
+        return Geometry(
+            x=geometry[0], y=geometry[1],
+            width=geometry[2], height=geometry[3]
+        )
 
 
     def move_active_window(self, new_geometry):
         """ Moves the active window """
 
-        self.move_window(wnck.screen_get_default().get_active_window(), new_geometry)
+        self.move_window(
+            wnck.screen_get_default().get_active_window(), new_geometry)
 
 
     def move_windows(self, new_geometry_list):
@@ -80,11 +88,15 @@ class AzulejoScreen(object):
             if x < len(filtered_windows):
                 self.move_window(filtered_windows[x], new_geometry_list[x])
 
-
-    def move_window(self, window, new_geometry):
+    @staticmethod
+    def move_window(window, new_geometry):
         """ Moves the window to the specified geometry """
 
-        geometry_list_args = [0, 255] + [ new_geometry.x, new_geometry.y, new_geometry.width, new_geometry.height ]
+        geometry_list_args = [0, 255] + \
+            [
+                new_geometry.x, new_geometry.y,
+                new_geometry.width, new_geometry.height
+            ]
         window.unmaximize()
         window.set_geometry(*geometry_list_args)
 
@@ -97,13 +109,15 @@ class AzulejoScreen(object):
         curwin.maximize()
 
 
-    def get_number_monitors(self):
+    @staticmethod
+    def get_number_monitors():
         """ Returns the number of monitors in use """
 
         return gtk.gdk.screen_get_default().get_n_monitors()
 
 
-    def update(self):
+    @staticmethod
+    def update():
         """ Forces and update """
 
         # Doesn't appear to do much
