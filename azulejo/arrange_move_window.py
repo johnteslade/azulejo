@@ -26,7 +26,7 @@ class ArrangeMoveWindow(ArrangeBase):
         }
 
         new_geometry = Geometry(
-            x=current_monitor_geometry.x + self.parse_simple_math_expressions(geometries[0], subst_vars), 
+            x=current_monitor_geometry.x + self.parse_simple_math_expressions(geometries[0], subst_vars),
             y=current_monitor_geometry.y + self.parse_simple_math_expressions(geometries[1], subst_vars),
             width=window_original_geometry.width,
             height=window_original_geometry.height

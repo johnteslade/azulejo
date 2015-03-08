@@ -4,7 +4,7 @@ class Geometry:
     """ A class to hold the geometry of a window or screen """
 
     def __init__(self, x=None, y=None, width=None, height=None):
-       
+
         self.x = x
         self.y = y
         self.width = width
@@ -12,13 +12,13 @@ class Geometry:
 
     def _as_list(self):
         """ Returns the class a list [x, y, width, height] """
-        
+
         return [ self.x, self.y, self.width, self.height ]
 
 
     def is_similar(self, rhs, error_margin=30):
         """ Compare if objects are similar within the given error margin """
-       
+
         # TODO there might be a neater way to do this
 
         ga = self._as_list()
@@ -33,14 +33,14 @@ class Geometry:
     def __cmp__(self, rhs):
         """ Comparison of object using vals """
 
-        if (rhs.x == self.x) and (rhs.y == self.y) and (rhs.width == self.width) and (rhs.height == self.height): 
+        if (rhs.x == self.x) and (rhs.y == self.y) and (rhs.width == self.width) and (rhs.height == self.height):
             return 0
         else:
             return 1
 
-    
+
     def __repr__(self):
-        
-        return "Geometry(x={}, y={}, width={}, height={})".format(self.x, self.y, self.width, self.height) 
+
+        return "Geometry(x={}, y={}, width={}, height={})".format(self.x, self.y, self.width, self.height)
 
 

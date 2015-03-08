@@ -4,9 +4,9 @@ from azulejo.geometry import Geometry
 
 class SingleTestScreenMock(ScreenMockBase):
     """ Mock for a single screen """
-    
+
     def __init__(self):
-       
+
         self.monitor_geometry = [
            Geometry(x=0, y=0, width=2000, height=1000),
         ]
@@ -32,21 +32,21 @@ class SingleTestScreenMock(ScreenMockBase):
 
 
 class MultipleTestScreenMock(ScreenMockBase):
-    """ 
-    
+    """
+
     Mock for multiple screens
-    
+
     In a simple side by side configuration where the active window is on the 2nd monitor
 
     TODO additional types of multiple test config:
         - two monitors arranged top and bottom
         - >2 monitors
         - monitors where one is larger than the other (and moving a too large window to smaller one)
-    
+
     """
-    
+
     def __init__(self):
-       
+
         self.monitor_geometry = [
            Geometry(x=0, y=0, width=200, height=100),
            Geometry(x=200, y=0, width=200, height=100),

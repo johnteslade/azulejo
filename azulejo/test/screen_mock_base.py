@@ -9,19 +9,19 @@ class ScreenMockBase:
     def __init__(self):
         raise NotImplementedError
 
-    
+
     def get_all_windows(self):
         """ Gets all windows in the screen """
 
         return self.windows
 
-    
+
     def get_monitor_geometry(self, monitor=None):
         """ Returns a rectangle with geometry of the specified monitor - if no monitor uses one with active window """
 
         if monitor == None:
             monitor = self.get_active_window_monitor()
-        
+
         return self.monitor_geometry[monitor]
 
 
@@ -44,7 +44,7 @@ class ScreenMockBase:
 
             if (window.x >= monitor.x) and (window.x < monitor.x + monitor.width) and (window.y >= monitor.y) and (window.y < monitor.y + monitor.height):
                 return x
-       
+
         # If we get here then we have a mismatch between windows and monitors
         raise RuntimeError
 
@@ -57,27 +57,27 @@ class ScreenMockBase:
 
     def move_active_window(self, new_geometry):
         """ Moves the active window the specified geometry """
-        
+
         for x in xrange(len(self.windows)):
             if self.windows[x]['active']:
                 self.windows[x]['geometry'] = new_geometry
                 break
-    
+
 
     def move_windows(self, new_geometry_list):
         """ Moves the active window the specified geometry """
-        
+
         for x in xrange(len(new_geometry_list)):
             self.windows[x]['geometry'] = new_geometry_list[x]
 
 
     def maximise_active_window(self):
-        """ Maximises the active window """ 
+        """ Maximises the active window """
 
         monitor_size = self.get_monitor_geometry(self.get_active_window_monitor())
         self.move_active_window(monitor_size)
 
-    
+
     def get_number_monitors(self):
         """ Returns the number of monitors in use """
 

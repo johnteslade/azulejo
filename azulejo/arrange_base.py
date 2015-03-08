@@ -3,7 +3,7 @@ import logging
 from geometry import Geometry
 
 class ArrangeBase(object):
-    """ A base class for defining an action to arrange window(s) """    
+    """ A base class for defining an action to arrange window(s) """
 
     def __init__(self, screen_in):
         """ Initialiser """
@@ -22,19 +22,19 @@ class ArrangeBase(object):
 
     def parse_simple_math_expressions(self, expression, subst_vars):
         """ Parses the string expression and evaluates it """
-        
+
         expression = str(expression)
-            
-        for subst in subst_vars.keys():            
+
+        for subst in subst_vars.keys():
             expression = expression.replace(subst, str(subst_vars[subst]))
 
         return int(eval(expression))
 
-    
+
     def create_geometry(self, geometry_in, monitor):
         """ Creates the geometry for the config input """
-     
-        monitor_geometry = self._screen.get_monitor_geometry(monitor) 
+
+        monitor_geometry = self._screen.get_monitor_geometry(monitor)
 
         # Parse the string values coming in
         geometry_out_list = [ self.parse_simple_math_expressions(coord, { 'w': monitor_geometry.width, 'h': monitor_geometry.height} ) for coord in geometry_in ]
@@ -54,8 +54,8 @@ class ArrangeBase(object):
 
     def get_possible_positions(self, positions, monitor=None):
         """ Function to create all possible window positions  """
-        
-        return [ self.create_geometry(position, monitor) for position in positions ] 
+
+        return [ self.create_geometry(position, monitor) for position in positions ]
 
 
 

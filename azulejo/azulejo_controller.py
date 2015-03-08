@@ -24,9 +24,9 @@ class AzulejoController:
             self._screen = AzulejoScreen()
 
         self._action_classes = {
-            'maximize': ArrangeMaximize(self._screen),     
-            'move_monitor': ArrangeMoveMonitor(self._screen),       
-            'move_single_window': ArrangeMoveWindow(self._screen),       
+            'maximize': ArrangeMaximize(self._screen),
+            'move_monitor': ArrangeMoveMonitor(self._screen),
+            'move_single_window': ArrangeMoveWindow(self._screen),
             'resize_single_window': ArrangeSingleWindow(self._screen),
             'resize_windows': ArrangeMultipleWindows(self._screen),
             'rotate_windows': ArrangeRotate(self._screen),
@@ -38,12 +38,12 @@ class AzulejoController:
 
         # Force screen update
         self._screen.update()
-       
+
         logging.debug("--- Starting action {}".format(function))
 
         # Call the correct function
         self._action_classes[function].do(params)
-        
+
         logging.debug("--- Action done {}".format(function))
 
 

@@ -12,11 +12,11 @@ class AzulejoConfiguration:
     """ Handles configuration of program """
 
     def __init__(self, always_use_initial=False):
-        
+
         self._initial_config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'initial_config.json')
 
         if always_use_initial:
-            conf_filename = self._initial_config_path 
+            conf_filename = self._initial_config_path
         else:
             conf_filename = os.path.expanduser('~/.azulejorc.js')
 
@@ -49,4 +49,4 @@ class AzulejoConfiguration:
         """ Gets the config data """
         return self.conf_data
 
-        
+

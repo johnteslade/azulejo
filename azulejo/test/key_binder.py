@@ -5,7 +5,7 @@ class KeyBinderDummy:
     """ Class this is used to allow keybindings to be caught and to be actioned """
 
     def __init__(self):
-    
+
         self.bindings = []
         self.saved_obj = None
 
@@ -19,7 +19,7 @@ class KeyBinderDummy:
             'dispatcher_params': dispatcher_params,
         })
 
-        
+
     def action_key(self, action):
         """ Actions a key press by calling the relavent dispatcher """
 

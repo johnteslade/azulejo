@@ -7,7 +7,7 @@ from setuptools import setup
 setup(name='azulejo',
       version='0.1',
       author='Pedro',
-      author_email='pedro@lamehacks.net',     
+      author_email='pedro@lamehacks.net',
       packages=['azulejo'],
       include_package_data=True,
       scripts=['bin/azulejo'],
