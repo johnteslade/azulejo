@@ -195,6 +195,41 @@ class AzulejoTestSingle(AzulejoTestBase):
             Geometry(x=1001, y=501, width=1000, height=500)
         )
 
+    def test_multimonitor(self):
+        """Test multimonitor does nothing when only one screen."""
+
+        # Move left
+        self.keybinding_obj.action_key('<Ctrl><Super>q')
+
+        self.assertEqual(
+            self.screen.get_active_window()['geometry'],
+            Geometry(x=50, y=80, width=50, height=100)
+        )
+
+        # Move right
+        self.keybinding_obj.action_key('<Ctrl><Super>w')
+
+        self.assertEqual(
+            self.screen.get_active_window()['geometry'],
+            Geometry(x=50, y=80, width=50, height=100)
+        )
+
+        # Move left maximise
+        self.keybinding_obj.action_key('<Ctrl><Super>a')
+
+        self.assertEqual(
+            self.screen.get_active_window()['geometry'],
+            Geometry(x=50, y=80, width=50, height=100)
+        )
+
+        # Move right maximise
+        self.keybinding_obj.action_key('<Ctrl><Super>s')
+
+        self.assertEqual(
+            self.screen.get_active_window()['geometry'],
+            Geometry(x=50, y=80, width=50, height=100)
+        )
+
 
 class AzulejoTestMultiple(AzulejoTestBase):
     """ Test cases for multi monitor setup """
