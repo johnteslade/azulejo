@@ -1,8 +1,7 @@
-import configuration
 import logging
 
-from azulejo_controller import AzulejoController
-from configuration import AzulejoConfiguration
+from .azulejo_controller import AzulejoController
+from .configuration import AzulejoConfiguration
 
 def dispatcher(dis_param):
     """ A dispatcher used for key binding """

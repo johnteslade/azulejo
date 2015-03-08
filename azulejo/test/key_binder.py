@@ -23,7 +23,7 @@ class KeyBinderDummy(object):
     def action_key(self, action):
         """ Actions a key press by calling the relavent dispatcher """
 
-        key_found = filter(lambda x: x['action'] == action, self.bindings)
+        key_found = [x for x in self.bindings if x['action'] == action]
         assert len(key_found) == 1
         func = key_found[0]['dispatcher']
         func(key_found[0]['dispatcher_params'])

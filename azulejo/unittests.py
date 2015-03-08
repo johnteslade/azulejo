@@ -1,10 +1,12 @@
-import unittest
-import azulejo
+from __future__ import absolute_import
 
-from test.screen_mocks import SingleTestScreenMock
-from test.screen_mocks import MultipleTestScreenMock
-from test.key_binder import KeyBinderDummy
-from geometry import Geometry
+import unittest
+from azulejo.azulejo import run
+
+from .test.screen_mocks import SingleTestScreenMock
+from .test.screen_mocks import MultipleTestScreenMock
+from .test.key_binder import KeyBinderDummy
+from .geometry import Geometry
 
 
 class AzulejoTestBase(unittest.TestCase):
@@ -26,7 +28,7 @@ class AzulejoTestSingle(AzulejoTestBase):
         self.keybinding_obj = KeyBinderDummy()
         self.screen = SingleTestScreenMock()
 
-        azulejo.run(True, self.screen, self.keybinding_obj)
+        run(True, self.screen, self.keybinding_obj)
 
 
     def test_left_side(self):
@@ -203,7 +205,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
         self.keybinding_obj = KeyBinderDummy()
         self.screen = MultipleTestScreenMock()
 
-        azulejo.run(True, self.screen, self.keybinding_obj)
+        run(True, self.screen, self.keybinding_obj)
 
 
     def test_left_side_multiple(self):

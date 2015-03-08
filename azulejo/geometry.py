@@ -30,17 +30,13 @@ class Geometry(object):
         return True
 
 
-    def __cmp__(self, rhs):
+    def __eq__(self, rhs):
         """ Comparison of object using vals """
-
-        if (rhs.x == self.x) and (rhs.y == self.y) and (rhs.width == self.width) and (rhs.height == self.height):
-            return 0
-        else:
-            return 1
-
+        return (rhs.x == self.x) and (rhs.y == self.y) and \
+            (rhs.width == self.width) and (rhs.height == self.height)
 
     def __repr__(self):
-
-        return "Geometry(x={}, y={}, width={}, height={})".format(self.x, self.y, self.width, self.height)
+        return "Geometry(x={}, y={}, width={}, height={})".format(
+            self.x, self.y, self.width, self.height)
 
 

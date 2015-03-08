@@ -2,8 +2,8 @@ from collections import deque
 import time
 import logging
 
-from arrange_base import ArrangeBase
-from geometry import Geometry
+from .arrange_base import ArrangeBase
+from .geometry import Geometry
 
 
 

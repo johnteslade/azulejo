@@ -30,7 +30,8 @@ class AzulejoScreen(object):
 
         # Get windows list and filter for normal windows
         windows = s.get_windows_stacked()
-        filtered_windows = filter(lambda window: window.get_window_type() == wnck.WindowType.__enum_values__[0], windows)
+        filtered_windows = [window for window in windows if
+                window.get_window_type() == wnck.WindowType.__enum_values__[0]]
         filtered_windows.reverse()
         return filtered_windows
 
@@ -75,7 +76,7 @@ class AzulejoScreen(object):
 
         filtered_windows = self.get_all_windows()
 
-        for x in xrange(len(new_geometry_list)):
+        for x in range(len(new_geometry_list)):
             if x < len(filtered_windows):
                 self.move_window(filtered_windows[x], new_geometry_list[x])
 

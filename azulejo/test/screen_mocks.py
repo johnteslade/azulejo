@@ -1,4 +1,4 @@
-from screen_mock_base import ScreenMockBase
+from .screen_mock_base import ScreenMockBase
 from azulejo.geometry import Geometry
 
 

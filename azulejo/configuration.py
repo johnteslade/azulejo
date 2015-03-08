@@ -21,10 +21,10 @@ class AzulejoConfiguration(object):
             conf_filename = os.path.expanduser('~/.azulejorc.js')
 
             if not os.path.isfile(conf_filename):
-                print "Starting azulejo by creating file: '%s'" % (conf_filename)
+                print("Starting azulejo by creating file: '%s'" % (conf_filename))
                 self.create_initial_config_file(conf_filename)
 
-        print "Reading config file: '%s'" % (conf_filename)
+        print("Reading config file: '%s'" % (conf_filename))
         json_string = self.read_file(conf_filename)
 
         self.conf_data = json.loads(json_string)

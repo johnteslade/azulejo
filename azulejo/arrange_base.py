@@ -1,6 +1,6 @@
 import logging
 
-from geometry import Geometry
+from .geometry import Geometry
 
 class ArrangeBase(object):
     """ A base class for defining an action to arrange window(s) """

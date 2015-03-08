@@ -2,12 +2,12 @@ from collections import deque
 import logging
 import time
 
-from arrange_maximize import ArrangeMaximize
-from arrange_move_monitor import ArrangeMoveMonitor
-from arrange_move_window import ArrangeMoveWindow
-from arrange_multiple_windows import ArrangeMultipleWindows
-from arrange_rotate import ArrangeRotate
-from arrange_single_window import ArrangeSingleWindow
+from .arrange_maximize import ArrangeMaximize
+from .arrange_move_monitor import ArrangeMoveMonitor
+from .arrange_move_window import ArrangeMoveWindow
+from .arrange_multiple_windows import ArrangeMultipleWindows
+from .arrange_rotate import ArrangeRotate
+from .arrange_single_window import ArrangeSingleWindow
 
 
 
