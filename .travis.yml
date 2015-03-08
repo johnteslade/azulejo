@@ -3,6 +3,8 @@ python:
   - "2.7"
 # command to install dependencies
 install:
-  - pip install mock
+  - pip install mock python-coveralls pytest-cov pytest-pep8
 # command to run tests
-script:  python azulejo/unittests.py
+script:  py.test -v --cov=azulejo --cov-report=term-missing azulejo/unittests.py
+after_success:
+  - coveralls
