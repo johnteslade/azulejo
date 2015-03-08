@@ -6,21 +6,20 @@ from geometry import Geometry
 
 class AzulejoScreen(object):
     """
-
     Class to hold details of the current screen
 
-    This is to encapsulate the gtk that actually communiates with the system.  This will allow us to change libraries if needed and also allows the creation of a mock screen object for testing.
+    This is to encapsulate the gtk that actually communiates with the system.
+    This will allow us to change libraries if needed and also allows the
+    creation of a mock screen object for testing.
 
     """
 
     def __init__(self):
         """ Initialiser """
-
         pass
 
-
     def get_all_windows(self):
-        """ Gets all windows in the screen """
+        """Get all windows in the screen."""
 
         # Get screen - this must come before gtk loop
         s = wnck.screen_get_default()
@@ -35,19 +34,18 @@ class AzulejoScreen(object):
         filtered_windows.reverse()
         return filtered_windows
 
-
     def get_monitor_geometry(self, monitor=None):
-        """ Returns a rectangle with geometry of the specified monitor - if no monitor uses one with active window """
+        """Return a rectangle with geometry of the specified monitor.
 
-        if monitor == None:
+        If no monitor uses one with active window.
+        """
+        if monitor is None:
             monitor = self.get_active_window_monitor()
 
         return gtk.gdk.screen_get_default().get_monitor_geometry(monitor)
 
-
     def get_active_window(self):
         """ Returns the active window """
-
         return wnck.screen_get_default().get_active_window()
 
 
