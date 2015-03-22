@@ -23,12 +23,7 @@ class ScreenMockBase(object):
 
     def get_active_window(self):
         """ Returns the active window """
-
-        active_windows = [x for x in self.windows if x['active'] == True]
-        assert len(active_windows) == 1
-
-        return active_windows[0]
-
+        return self.windows[0]
 
     def get_active_window_monitor(self):
         """ Returns the monitor of the currently active window """
@@ -57,10 +52,7 @@ class ScreenMockBase(object):
     def move_active_window(self, new_geometry):
         """ Moves the active window the specified geometry """
 
-        for x in range(len(self.windows)):
-            if self.windows[x]['active']:
-                self.windows[x]['geometry'] = new_geometry
-                break
+        self.windows[0]['geometry'] = new_geometry
 
 
     def move_windows(self, new_geometry_list):

@@ -14,19 +14,15 @@ class SingleTestScreenMock(ScreenMockBase):
         self.windows = [
             {
                 'geometry': Geometry(x=50, y=80, width=50, height=100),
-                'active': True,
             },
             {
                 'geometry': Geometry(x=200, y=0, width=5, height=5),
-                'active': False,
             },
             {
                 'geometry': Geometry(x=200, y=0, width=5, height=5),
-                'active': False,
             },
             {
                 'geometry': Geometry(x=200, y=0, width=5, height=5),
-                'active': False,
             },
         ]
 
@@ -56,19 +52,15 @@ class MultipleTestScreenMock(ScreenMockBase):
 
         self.windows = [
             {
-                'geometry': Geometry(x=0, y=0, width=10, height=10),
-                'active': False,
-            },
-            {
-                'geometry': Geometry(x=100, y=0, width=5, height=5),
-                'active': False,
+                'geometry': Geometry(x=250, y=10, width=20, height=30),
             },
             {
                 'geometry': Geometry(x=300, y=0, width=5, height=5),
-                'active': False,
             },
             {
-                'geometry': Geometry(x=250, y=10, width=20, height=30),
-                'active': True,
+                'geometry': Geometry(x=0, y=0, width=10, height=10),
+            },
+            {
+                'geometry': Geometry(x=100, y=0, width=5, height=5),
             },
         ]
