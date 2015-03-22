@@ -56,8 +56,8 @@ The following is the basic default keymap - but all avaliable keymaps are printe
 
 	Alt+Super+KP5		Maximise window
 
-	Ctrl+Super+q		Move window to monitor on left
-	Ctrl+Super+w		Move window to monitor on right
+	Ctrl+Super+d		Move window to monitor on left
+	Ctrl+Super+f		Move window to monitor on right
 
 	Ctrl+Super+a		Move window to monitor on left and maximise
 	Ctrl+Super+s		Move window to monitor on right and maximise

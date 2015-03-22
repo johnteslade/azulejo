@@ -261,7 +261,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
         self.assertEqual(self.screen.get_active_window_monitor(), 1)
 
         # Move left
-        self.keybinding_obj.action_key('<Ctrl><Super>q')
+        self.keybinding_obj.action_key('<Ctrl><Super>d')
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],
@@ -271,7 +271,7 @@ class AzulejoTestMultiple(AzulejoTestBase):
         self.assertEqual(self.screen.get_active_window_monitor(), 0)
 
         # Move right
-        self.keybinding_obj.action_key('<Ctrl><Super>w')
+        self.keybinding_obj.action_key('<Ctrl><Super>f')
 
         self.assertEqual(
             self.screen.get_active_window()['geometry'],

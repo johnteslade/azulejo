@@ -43,7 +43,7 @@
 {
     "name": "window-to-monitor-left",
     "description": "move window to monitor to left",
-    "keybind": ["<Ctrl><Super>q", "<Super><Ctrl>KP_Left", "<Super><Ctrl>KP_4"],
+    "keybind": ["<Ctrl><Super>d", "<Super><Ctrl>KP_Left", "<Super><Ctrl>KP_4"],
     "function": "move_monitor",
     "parameters": ["left", ""]
 },
@@ -51,7 +51,7 @@
 {
     "name": "window-to-monitor-right",
     "description": "move window to monitor to right",
-    "keybind": ["<Ctrl><Super>w", "<Super><Ctrl>KP_Right", "<Super><Ctrl>KP_6"],
+    "keybind": ["<Ctrl><Super>f", "<Super><Ctrl>KP_Right", "<Super><Ctrl>KP_6"],
     "function": "move_monitor",
     "parameters": ["right", ""]
 },
