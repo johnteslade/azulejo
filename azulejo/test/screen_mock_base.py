@@ -10,6 +10,17 @@ class ScreenMockBase(object):
         """ Gets all windows in the screen """
         return self.windows
 
+    def get_all_window_monitors(self):
+        """Get all windows, geometry and monitor.
+
+        Returns list of tuple window_obj, geometry, monitor.
+        """
+        output = []
+        for win in self.windows:
+            output.append((win, win['geometry'], self.get_window_monitor(win['geometry'])))
+        return output
+
+
     def get_monitor_geometry(self, monitor=None):
         """Returns a rectangle with geometry of the specified monitor.
 
@@ -27,11 +38,12 @@ class ScreenMockBase(object):
 
     def get_active_window_monitor(self):
         """ Returns the monitor of the currently active window """
+        return self.get_window_monitor(self.get_active_window_geometry())
 
-        for x in range(len(self.monitor_geometry)):
+    def get_window_monitor(self, window):
+        """Return the monitor of the window."""
 
-            monitor = self.monitor_geometry[x]
-            window = self.get_active_window()['geometry']
+        for x, monitor in enumerate(self.monitor_geometry):
 
             if (window.x >= monitor.x) \
                     and (window.x < monitor.x + monitor.width) \
@@ -41,7 +53,6 @@ class ScreenMockBase(object):
 
         # If we get here then we have a mismatch between windows and monitors
         raise RuntimeError
-
 
     def get_active_window_geometry(self):
         """ Returns the geometry of the current active window """
@@ -55,11 +66,12 @@ class ScreenMockBase(object):
         self.windows[0]['geometry'] = new_geometry
 
 
-    def move_windows(self, new_geometry_list):
+    def move_windows(self, new_geometry_list, reverse=False):
         """ Moves the active window the specified geometry """
 
         for x in range(len(new_geometry_list)):
-            self.windows[x]['geometry'] = new_geometry_list[x]
+            if new_geometry_list[x]:
+                self.windows[x]['geometry'] = new_geometry_list[x]
 
 
     def maximise_active_window(self):

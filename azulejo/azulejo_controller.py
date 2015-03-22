@@ -6,6 +6,7 @@ from .arrange_move_window import ArrangeMoveWindow
 from .arrange_multiple_windows import ArrangeMultipleWindows
 from .arrange_rotate import ArrangeRotate
 from .arrange_single_window import ArrangeSingleWindow
+from .arrange_swap_monitor import ArrangeSwapMonitor
 
 
 
@@ -29,6 +30,7 @@ class AzulejoController(object):
             'resize_single_window': ArrangeSingleWindow(self._screen),
             'resize_windows': ArrangeMultipleWindows(self._screen),
             'rotate_windows': ArrangeRotate(self._screen),
+            'swap_monitor': ArrangeSwapMonitor(self._screen),
         }
 
 

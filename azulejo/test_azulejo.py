@@ -366,4 +366,36 @@ class AzulejoTestMultiple(AzulejoTestBase):
             Geometry(x=301, y=51, width=100, height=50)
         )
 
+    def test_swap_monitor(self):
+        """Test swap monitor functionality."""
+
+        # Left swap
+        self.keybinding_obj.action_key('<Ctrl><Super>q')
+
+        print self.screen.get_all_windows()
+
+        self.assertEqual(
+            self.screen.get_all_windows()[0]['geometry'],
+            Geometry(x=0, y=0, width=200, height=100)
+        )
+
+        self.assertEqual(
+            self.screen.get_all_windows()[2]['geometry'],
+            Geometry(x=200, y=0, width=200, height=100)
+        )
+
+        # Right swap
+        self.keybinding_obj.action_key('<Ctrl><Super>w')
+
+        print self.screen.get_all_windows()
+
+        self.assertEqual(
+            self.screen.get_all_windows()[0]['geometry'],
+            Geometry(x=200, y=0, width=200, height=100)
+        )
+
+        self.assertEqual(
+            self.screen.get_all_windows()[1]['geometry'],
+            Geometry(x=0, y=0, width=200, height=100)
+        )
 

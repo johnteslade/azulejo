@@ -22,6 +22,29 @@ class ArrangeMonitorBase(ArrangeBase):
 
         return new_monitor
 
+    def new_window_geometry(
+            self,
+            window_original_geometry,
+            old_monitor_geometry,
+            new_monitor
+        ):
+        """Return the geometry of the new window."""
+
+        new_monitor_geometry = \
+            self._screen.get_monitor_geometry(new_monitor)
+
+        # TODO deal with if the window is now too large for the new monitor
+        new_position = Geometry(
+            x=new_monitor_geometry.x +
+            (window_original_geometry.x - old_monitor_geometry.x),
+            y=new_monitor_geometry.y +
+            (window_original_geometry.y - old_monitor_geometry.y),
+            width=window_original_geometry.width,
+            height=window_original_geometry.height,
+        )
+
+        return new_position
+
     def move_window_to_monitor(
             self,
             window_original_geometry,
@@ -35,18 +58,8 @@ class ArrangeMonitorBase(ArrangeBase):
         # Do we need to move the window?
         if new_monitor != old_monitor:
 
-            new_monitor_geometry = \
-                self._screen.get_monitor_geometry(new_monitor)
-
-            # TODO deal with if the window is now too large for the new monitor
-            new_position = Geometry(
-                x=new_monitor_geometry.x +
-                (window_original_geometry.x - old_monitor_geometry.x),
-                y=new_monitor_geometry.y +
-                (window_original_geometry.y - old_monitor_geometry.y),
-                width=window_original_geometry.width,
-                height=window_original_geometry.height,
-            )
+            new_position = self.new_window_geometry(
+                window_original_geometry, old_monitor_geometry, new_monitor)
 
             logging.debug("Moving to monitor {} and geometry {}".format(
                 new_monitor, new_position))

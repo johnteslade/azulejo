@@ -37,6 +37,17 @@ class AzulejoScreen(object):
         filtered_windows.reverse()
         return filtered_windows
 
+    def get_all_window_monitors(self):
+        """Get all windows, geometry and monitor.
+
+        Returns list of tuple window_obj, geometry, monitor.
+        """
+        output = []
+        windows = self.get_all_windows()
+        for win in windows:
+            output.append((win, self.get_window_geometry(win), self.get_window_monitor(win)))
+        return output
+
     def get_monitor_geometry(self, monitor=None):
         """Return a rectangle with geometry of the specified monitor.
 
@@ -53,23 +64,33 @@ class AzulejoScreen(object):
         return wnck.screen_get_default().get_active_window()
 
 
-    def get_active_window_monitor(self):
+    def get_window_monitor(self, window):
         """ Returns the monitor of the currently active window """
 
-        # Find the active window coordinates then find out which monitor this is
-        active_window_geo = self.get_active_window_geometry()
+        # Find the window coordinates then find out which monitor this is
+        active_window_geo = self.get_window_geometry(window)
         return gtk.gdk.screen_get_default().get_monitor_at_point(
             active_window_geo.x, active_window_geo.y)
 
+    def get_active_window_monitor(self):
+        """ Returns the monitor of the window """
 
-    def get_active_window_geometry(self):
-        """ Returns the geometry of the current active window """
+        return self.get_window_monitor(self.get_active_window())
 
-        geometry = self.get_active_window().get_geometry()
+    @staticmethod
+    def get_window_geometry(window):
+        """ Returns the geometry of the window """
+
+        geometry = window.get_geometry()
         return Geometry(
             x=geometry[0], y=geometry[1],
             width=geometry[2], height=geometry[3]
         )
+
+    def get_active_window_geometry(self):
+        """ Returns the geometry of the current active window """
+
+        return self.get_window_geometry(self.get_active_window())
 
 
     def move_active_window(self, new_geometry):
@@ -79,13 +100,18 @@ class AzulejoScreen(object):
             wnck.screen_get_default().get_active_window(), new_geometry)
 
 
-    def move_windows(self, new_geometry_list):
+    def move_windows(self, new_geometry_list, reverse=False):
         """ Moves a number of windows - starting from the active """
 
         filtered_windows = self.get_all_windows()
 
-        for x in range(len(new_geometry_list)):
-            if x < len(filtered_windows):
+        if reverse:
+            window_indexes = range(len(new_geometry_list) - 1, 0, -1)
+        else:
+            window_indexes = range(len(new_geometry_list))
+
+        for x in window_indexes:
+            if x < len(filtered_windows) and new_geometry_list[x]:
                 self.move_window(filtered_windows[x], new_geometry_list[x])
 
     @staticmethod

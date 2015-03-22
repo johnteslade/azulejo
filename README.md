@@ -62,6 +62,9 @@ The following is the basic default keymap - but all avaliable keymaps are printe
 	Ctrl+Super+a		Move window to monitor on left and maximise
 	Ctrl+Super+s		Move window to monitor on right and maximise
 
+	Ctrl+Super+q		Swap windows on current monitor and monitor to left
+	Ctrl+Super+w		Swap windows on current monitor and monitor to right
+
 ## Configuration
 
 Azulejo configurations are stored at `~/.azulejo.json`.

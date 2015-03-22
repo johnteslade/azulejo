@@ -41,6 +41,22 @@
 },
 
 {
+    "name": "swap-to-monitor-left",
+    "description": "move window to monitor to left",
+    "keybind": ["<Ctrl><Super>q"],
+    "function": "swap_monitor",
+    "parameters": ["left", ""]
+},
+
+{
+    "name": "swap-to-monitor-right",
+    "description": "move window to monitor to right",
+    "keybind": ["<Ctrl><Super>w"],
+    "function": "swap_monitor",
+    "parameters": ["right", ""]
+},
+
+{
     "name": "window-to-monitor-left",
     "description": "move window to monitor to left",
     "keybind": ["<Ctrl><Super>d", "<Super><Ctrl>KP_Left", "<Super><Ctrl>KP_4"],
