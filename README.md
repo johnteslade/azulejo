@@ -64,7 +64,7 @@ The following is the basic default keymap - but all avaliable keymaps are printe
 
 ## Configuration
 
-Azulejo configurations are stored at `~/.azulejo.json`.
+The Azulejo configuration is stored at `~/.azulejo.json` and an initial version (containing the above shortcuts) is in the repo at https://github.com/johnteslade/azulejo/blob/master/azulejo/initial_config.json.
 
 ## Authors
 
